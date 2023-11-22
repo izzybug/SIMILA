@@ -120,14 +120,14 @@
 						<div class="d-flex justify-content-between">
 							<div class="h5 mb-0">Rank</div>
 							<div class="table-actions">
-								<a title="VIEW" href="student.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+								<a title="VIEW" href="#"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
 						</div>
 
 						<div class="user-list">
 						<ul>
 								<?php
-		                         $query = mysqli_query($conn,"SELECT * FROM rank ORDER BY score DESC limit 4");
+		                         $query = mysqli_query($conn,"SELECT * FROM `rank` ORDER BY score DESC limit 4") or die(mysqli_error());
 								 $x = 1;
 		                         while ($row = mysqli_fetch_array($query)) {
 		                             ?>
@@ -171,7 +171,7 @@
 							<tr>
 
 								<?php 
-								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis LIMIT 5");
+								$tampil = mysqli_query($conn, "SELECT * FROM `daftar_istilah_medis` LIMIT 5") or die(mysqli_error());
 								$x = 1;
 								while ($row = mysqli_fetch_array($tampil)) {
 
