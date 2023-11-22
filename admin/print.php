@@ -1,3 +1,4 @@
+<?php include('../includes/config.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,9 +46,8 @@
 			<th>Arti</th>
 		</tr>
 		<?php 
-		$koneksi = mysqli_connect('localhost','root','','simpen');
 		$no = 1;
-		$sql = mysqli_query($koneksi,"select * from `daftar_istilah_medis`");
+		$sql = mysqli_query($conn,"select * from daftar_istilah_medis");
 		while($data = mysqli_fetch_array($sql)){
 		?>
 		<tr>
