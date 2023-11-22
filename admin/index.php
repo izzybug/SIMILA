@@ -1,7 +1,7 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -12,7 +12,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
 
