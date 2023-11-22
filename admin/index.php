@@ -127,7 +127,7 @@
 						<div class="user-list">
 						<ul>
 								<?php
-		                         $query = mysqli_query($conn,"SELECT * FROM rank  ORDER BY score DESC limit 4") or die(mysqli_error());
+		                         $query = mysqli_query($conn,"SELECT * FROM rank ORDER BY score DESC limit 4");
 								 $x = 1;
 		                         while ($row = mysqli_fetch_array($query)) {
 		                             ?>
@@ -171,7 +171,7 @@
 							<tr>
 
 								<?php 
-								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis LIMIT 5") or die(mysqli_error());
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis LIMIT 5");
 								$x = 1;
 								while ($row = mysqli_fetch_array($tampil)) {
 
