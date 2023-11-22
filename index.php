@@ -14,10 +14,12 @@ if(isset($_POST['signin']))
 		while ($row = mysqli_fetch_assoc($query)) {
 		    if ($row['role'] == 'admin') {
 		    	$_SESSION['alogin']=$row['id'];
+				$_SESSION['email']=$row['email'];
 			 	echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
 		    }
 		    elseif ($row['role'] == 'student') {
 		    	$_SESSION['alogin']=$row['id'];
+				$_SESSION['email']=$row['email'];
 			 	echo "<script type='text/javascript'> document.location = 'users/index.php'; </script>";
 		    }
 		}
