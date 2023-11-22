@@ -2,7 +2,7 @@
   include('../includes/session.php');
   include('../includes/config.php');
   
-  $email=$_SESSION['email'];
+  // $email=$_SESSION['email'];
 
   if(isset($_SESSION['key']))
   {

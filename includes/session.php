@@ -7,4 +7,5 @@ if (!isset($_SESSION['alogin']) || empty($_SESSION['alogin'])) {
     exit();
 }
 $session_id = $_SESSION['alogin'];
+$email = $_SESSION['email'];
 ?>
