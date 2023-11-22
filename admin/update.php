@@ -16,9 +16,7 @@
     }
   }
 
-  if(isset($_SESSION['key']))
-  {
-    if(@$_GET['q']== 'rmquiz') 
+  if(@$_GET['q']== 'rmquiz') 
     {
       $eid=@$_GET['eid'];
       $result = mysqli_query($conn,"SELECT * FROM questions WHERE eid='$eid' ") or die('Error');
@@ -33,11 +31,8 @@
       $r4 = mysqli_query($conn,"DELETE FROM history WHERE eid='$eid' ") or die('Error');
       header("location:list_kuis.php");
     }
-  }
 
-  if(isset($_SESSION['key']))
-  {
-    if(@$_GET['q']== 'addquiz') 
+  if(@$_GET['q']== 'addquiz') 
     {
       $name = $_POST['name'];
       $name= ucwords(strtolower($name));
@@ -48,10 +43,7 @@
       $q3=mysqli_query($conn,"INSERT INTO quiz VALUES  ('$id','$name' , '$sahi' , '$wrong','$total', NOW())");
       header("location:tambah_kuis.php?q=4&step=2&eid=$id&n=$total");
     }
-  }
 
-  if(isset($_SESSION['key']))
-  {
     if(@$_GET['q']== 'addqns') 
     {
       $n=@$_GET['n'];
@@ -91,7 +83,6 @@
       }
       header("location:list_kuis.php");
     }
-  }
 
   if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) 
   {
