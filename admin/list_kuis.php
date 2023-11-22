@@ -63,7 +63,6 @@
 										$tampil = mysqli_query($conn,"SELECT * FROM quiz ORDER BY date DESC") or die('Error');
 										$x = 1;
 										while ($row = mysqli_fetch_array($tampil)) {
-
 										?>  
 
 										<td class="table-plus">
@@ -77,7 +76,7 @@
 												<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
 												</a>
 												<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-													<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
+													<a class="dropdown-item" href="edit_kuis.php?eid=<?php echo $row['eid'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
 													<a class="dropdown-item" href="update.php?q=rmquiz&eid=<?php echo $row['eid'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
 												</div>
 											</div>

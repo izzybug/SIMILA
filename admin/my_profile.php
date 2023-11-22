@@ -1,27 +1,23 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
-if(isset($_POST['new_update']))
-{
-	$empid=$session_id;
-	$fname=$_POST['fname'];
-	$lname=$_POST['lastname'];   
-	$email=$_POST['email'];  
-	$dob=$_POST['dob']; 
-	$department=$_POST['ProgramStudi']; 
-	$address=$_POST['address']; 
-	$gender=$_POST['gender'];
-	$NIM=$_POST['NIM'];
+if (isset($_POST['new_update'])) {
+	$id=$session_id;
+	$name = $_POST['username'];
+	$email = $_POST['email'];
+	$password = md5($_POST['password']);
+	$user_role = $_POST['user_role'];
 
-    $result = mysqli_query($conn,"update tblemployees set FirstName='$fname', LastName='$lname', EmailId='$email', Gender='$gender', Dob='$dob', Department='$department', Address='$address', NIM='$NIM' where emp_id='$session_id'         
-		")or die(mysqli_error());
-    if ($result) {
-     	echo "<script>alert('Your records Successfully Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'my_profile.php'; </script>";
-	} else{
-	  die(mysqli_error());
-   }
+	$query = "UPDATE users SET username='$name', email='$email', password='$password', role='$user_role' WHERE id='$id'";
 
+	$result = mysqli_query($conn, $query);
+
+	if ($result) {
+		echo "<script>alert('users edit Successfully');</script>";
+		echo "<script>window.location = 'my_profile.php';</script>";
+	} else {
+		echo "<script>alert('Something went wrong. Please try again');</script>";
+	}
 }
 
 if (isset($_POST["update_image"])) {
@@ -36,11 +32,11 @@ if (isset($_POST["update_image"])) {
 		echo "<script>alert('Please Select Picture to Update');</script>";
 	}
 
-    $result = mysqli_query($conn,"update tblemployees set location='$location' where emp_id='$session_id'         
+    $result = mysqli_query($conn,"update users set location='$location' where id='$session_id'         
 		")or die(mysqli_error());
     if ($result) {
      	echo "<script>alert('Profile Picture Updated');</script>";
-     	echo "<script type='text/javascript'> document.location = 'head_profile.php'; </script>";
+     	echo "<script type='text/javascript'> document.location = 'my_profile.php'; </script>";
 	} else{
 	  die(mysqli_error());
    }
@@ -59,7 +55,7 @@ if (isset($_POST["update_image"])) {
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../vendors/images/siparti-dark.png" alt=""></div>
+			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -102,7 +98,7 @@ if (isset($_POST["update_image"])) {
 					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
 						<div class="pd-20 card-box height-100-p">
 
-							<?php $query= mysqli_query($conn,"select * from tblemployees LEFT JOIN tblprogramstudi ON tblemployees.Department = tblprogramstudi.Prodi where emp_id = '$session_id'")or die(mysqli_error());
+							<?php $query= mysqli_query($conn,"select * from users where id = '$session_id'")or die(mysqli_error());
 								$row = mysqli_fetch_array($query);
 							?>
 
@@ -130,29 +126,17 @@ if (isset($_POST["update_image"])) {
 									</div>
 								</form>
 							</div>
-							<h5 class="text-center h5 mb-0"><?php echo $row['FirstName']. " " .$row['LastName']; ?></h5>
-							<p class="text-center text-muted font-14"><?php echo $row['ProgramStudi']; ?></p>
+							<h5 class="text-center h5 mb-0 pd-10"><?php echo $row['username']; ?></h5>
 							<div class="profile-info">
 								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
 								<ul>
 									<li>
 										<span>Email Address:</span>
-										<?php echo $row['EmailId']; ?>
-									</li>
-									<li>
-										<span>Phone Number:</span>
-										<?php echo $row['NIM']; ?>
+										<?php echo $row['email']; ?>
 									</li>
 									<li>
 										<span>My Role:</span>
-										<? $roles = $row['role']; ?>
-										<?php if($roles = 'HOD'): ?>
-										 <?php echo "Head of Department"; ?>
-										<?php endif ?>
-									</li>
-									<li>
-										<span>Address:</span>
-										<?php echo $row['Address']; ?>
+										 <?php echo $row['role']; ?>
 									</li>
 								</ul>
 							</div>
@@ -164,109 +148,29 @@ if (isset($_POST["update_image"])) {
 								<div class="tab height-100-p">
 									<ul class="nav nav-tabs customtab" role="tablist">
 										<li class="nav-item">
-											<a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">KTI  Records</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+											<a class="nav-link" data-toggle="tab">Settings</a>
 										</li>
 									</ul>
 									<div class="tab-content">
-										<!-- Timeline Tab start -->
-										<div class="tab-pane fade show active" id="timeline" role="tabpanel">
-											<div class="pd-20">
-												<div class="profile-timeline">
-													<?php $query= mysqli_query($conn,"SELECT * from tblpengajuan where empid = '$session_id'")or die(mysqli_error());
-																while ($row = mysqli_fetch_array($query)) {
-		                        								$id = $row['kti_id'];
-															?>
-													<div class="timeline-month">
-														<h5><?php echo date('d M Y', strtotime($row['PostingDate'])); ?></h5>
-													</div>
-													<div class="profile-timeline-list">
-														<ul>
-															
-															<li>
-																<div class="task-name"><i class="ion-ios-chatboxes"></i><?php echo $row['Keperluan']; ?></div>
-																<p><?php echo $row['JudulProposal']; ?></p>
-
-																<div class="task-time">
-																	<?php $stats=$row['Status'];
-								                                       if($stats==1){
-								                                        ?>
-								                                           <span style="color: green">Approved</span>
-								                                            <?php } if($stats==2)  { ?>
-								                                           <span style="color: red">Not Approved</span>
-								                                            <?php } if($stats==0)  { ?>
-									                                       <span style="color: blue">Pending</span>
-									                                <?php } ?>
-																</div>
-
-															</li>
-															
-															
-														</ul>
-													</div>
-												<?php }?>
-												</div>
-											</div>
-										</div>
-										<!-- Timeline Tab End -->
-										<!-- Setting Tab start -->
-										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
-											<div class="profile-setting">
+										<div class="profile-setting">
 												<form method="POST" enctype="multipart/form-data">
 													<div class="profile-edit-list row">
 														<div class="col-md-12"><h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4></div>
 
 														<?php
-														$query = mysqli_query($conn,"select * from tblemployees where emp_id = '$session_id' ")or die(mysqli_error());
+														$query = mysqli_query($conn,"select * from users where id = '$session_id' ")or die(mysqli_error());
 														$row = mysqli_fetch_array($query);
 														?>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
-																<label>First Name</label>
-																<input name="fname" class="form-control form-control-lg" type="text" required="true" autocomplete="off" value="<?php echo $row['FirstName']; ?>">
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
-															<div class="form-group">
-																<label>Last Name</label>
-																<input name="lastname" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['LastName']; ?>">
+																<label>Username</label>
+																<input name="username" class="form-control form-control-lg" type="text" required="true" autocomplete="off" value="<?php echo $row['username']; ?>">
 															</div>
 														</div>
 														<div class="weight-500 col-md-6">
 															<div class="form-group">
 																<label>Email Address</label>
-																<input name="email" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['EmailId']; ?>">
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
-															<div class="form-group">
-																<label>Phone Number</label>
-																<input name="NIM" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['NIM']; ?>">
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
-															<div class="form-group">
-																<label>Date Of Birth</label>
-																<input name="dob" class="form-control form-control-lg date-picker" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['Dob']; ?>">
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
-															<div class="form-group">
-																<label>Gender</label>
-																<select name="gender" class="custom-select form-control" required="true" autocomplete="off">
-																<option value="<?php echo $row['Gender']; ?>"><?php echo $row['Gender']; ?></option>
-																	<option value="male">Male</option>
-																	<option value="female">Female</option>
-																</select>
-															</div>
-														</div>
-														<div class="weight-500 col-md-6">
-															
-															<div class="form-group">
-																<label>Address</label>
-																<input name="address" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['Address']; ?>">
+																<input name="email" class="form-control form-control-lg" type="text" placeholder="" required="true" autocomplete="off" value="<?php echo $row['email']; ?>">
 															</div>
 														</div>
 														<div class="weight-500 col-md-12">
@@ -280,8 +184,6 @@ if (isset($_POST["update_image"])) {
 													</div>
 												</form>
 											</div>
-										</div>
-										<!-- Setting Tab End -->
 									</div>
 								</div>
 							</div>

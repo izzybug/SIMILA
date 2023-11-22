@@ -7,6 +7,7 @@
 	<script src="../src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="../src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="../src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+	<!-- <script src="../vendors/scripts/datagraph.js"></script> -->
 
 	<!-- buttons for Export datatable -->
 	<script src="../src/plugins/datatables/js/dataTables.buttons.min.js"></script>
@@ -17,3 +18,4 @@
 	<script src="../src/plugins/datatables/js/vfs_fonts.js"></script>
 	
 	<script src="../vendors/scripts/datatable-setting.js"></script>
+	<script src="../vendors/scripts/advanced-components.js"></script>

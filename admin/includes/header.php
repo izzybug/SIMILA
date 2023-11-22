@@ -37,6 +37,11 @@
 			background-color: #B33C69;
 			color: #fff;
 		}
+		.btn-primary {
+			background-color: #B33C69;
+			color: #fff;
+			border: #B33C69;
+		}
 	</style>
 </head>
 <?php include('../includes/config.php'); ?>

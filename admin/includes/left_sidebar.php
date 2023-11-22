@@ -32,7 +32,7 @@
 							<span class="micon dw dw-library"></span><span class="mtext">Maintenance</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="student.php">Manage Users</a></li>
+							<li><a href="users.php">Manage Users</a></li>
 						</ul>
 					</li>
 				</ul>
