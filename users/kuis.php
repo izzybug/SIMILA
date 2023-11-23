@@ -75,6 +75,7 @@
 							}
 							$c=0;
 							echo '</table></div></div>';
+							echo'<div class="pd-20"><a class="btn btn-primary" href="kuis.php?q=1" > Back</a></div>';
 						}?>
 
 					</div>
