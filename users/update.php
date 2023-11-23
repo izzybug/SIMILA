@@ -103,7 +103,7 @@
       }
       if($sn == 1)
       {
-        $q=mysqli_query($conn,"INSERT INTO history (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0',NOW())")or die('Error');
+        $q=mysqli_query($conn,"INSERT INTO history (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0')")or die('Error');
       }
       $q=mysqli_query($conn,"SELECT * FROM history WHERE eid='$eid' AND email='$email' ")or die('Error115');
       while($row=mysqli_fetch_array($q) )
@@ -124,7 +124,7 @@
       }
       if($sn == 1)
       {
-        $q=mysqli_query($conn,"INSERT INTO history (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0',NOW() )")or die('Error137');
+        $q=mysqli_query($conn,"INSERT INTO history (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0' )")or die('Error137');
       }
       $q=mysqli_query($conn,"SELECT * FROM history WHERE eid='$eid' AND email='$email' " )or die('Error139');
       while($row=mysqli_fetch_array($q) )

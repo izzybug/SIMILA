@@ -27,7 +27,7 @@
 							<span class="micon dw dw-apartment"></span><span class="mtext"> Kuis </span>
 						</a>
 						<ul class="submenu">
-							<li><a href="apply_kti.php">Kuis</a></li>
+							<li><a href="kuis.php?q=1">Kuis</a></li>
 							<li><a href="apply_history.php">Histori Kuis</a></li>
 						</ul>
 					</li>
