@@ -24,7 +24,7 @@
 						<span class="user-icon">
 							<img style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" src="<?php echo (!empty($row['location'])) ? '../uploads/'.$row['location'] : '../uploads/NO-IMAGE-AVAILABLE.jpg'; ?>" alt="">
 						</span>
-						<span class="user-name"><?php echo $row['FirstName']. " " .$row['LastName']; ?></span>
+						<span class="user-name"><?php echo $row['username']; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="staff_profile.php"><i class="dw dw-user1"></i> Profile</a>

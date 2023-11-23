@@ -143,16 +143,16 @@
     }
     else if( $_SESSION['key']!='suryapinky')
     {
-      $q=mysqli_query($conn,"SELECT score FROM history WHERE eid='$eid' AND email='$email'" )or die('Error156');
+      $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
       while($row=mysqli_fetch_array($q) )
       {
         $s=$row['score'];
       }
-      $q=mysqli_query($conn,"SELECT * FROM rank WHERE email='$email'" )or die('Error161');
+      $q=mysqli_query($conn,"SELECT * FROM `rank` WHERE email='$email'" )or die('Error161');
       $rowcount=mysqli_num_rows($q);
       if($rowcount == 0)
       {
-        $q2=mysqli_query($conn,"INSERT INTO rank VALUES('$email','$s',NOW())")or die('Error165');
+        $q2=mysqli_query($conn,"INSERT INTO `rank` VALUES('$email','$s',NOW())")or die('Error165');
       }
       else
       {
