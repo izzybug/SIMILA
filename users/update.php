@@ -83,8 +83,16 @@
       }
       header("location:list_kuis.php");
     }
+    if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) {
 
-  if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) 
+      $total=@$_GET['t'];
+      $eid=@$_GET['eid'];
+      $username=$_POST['username'];
+      $q=mysqli_query($conn,"INSERT INTO history (`username`) VALUES ($username)  WHERE qid='$qid'" );
+      header("location:mulai_kuis.php?q=quiz&step=3&eid='.$eid.'&n=1&t='.$total.'");
+  }
+
+  if(@$_GET['q']== 'quiz' && @$_GET['step']== 3) 
   {
     $eid=@$_GET['eid'];
     $sn=@$_GET['n'];
