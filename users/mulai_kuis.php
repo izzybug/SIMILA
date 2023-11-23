@@ -60,7 +60,7 @@
 								$eid = $row['eid'];
                 echo '<div class="row">
                 <div class="col-md-6"></div><div class="col-md-12">   
-                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'"  method="POST">
+                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'&n=1&t='.$total.'"  method="POST">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-md-12 control-label" for="name"></label>  
