@@ -8,4 +8,5 @@ if (!isset($_SESSION['alogin']) || empty($_SESSION['alogin'])) {
 }
 $session_id = $_SESSION['alogin'];
 $email = $_SESSION['email'];
+$session_role = $_SESSION['role'];
 ?>

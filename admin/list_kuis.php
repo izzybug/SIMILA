@@ -43,7 +43,7 @@
 					</div>
 					<div class="card-box mb-30">
 						<div class="pd-20">
-							<a class="btn btn-baru float-right" href="tambah_kuis.php?q=4" >Kuis baru</a>
+							<a class="btn btn-baru float-right" href="tambah_kuis.php?q=4" ><i class="fa-solid fa-file-circle-plus"></i> Kuis baru</a>
 							<h2 class="text-blue h4">SEMUA KUIS</h2>
 						</div>
 						<div class="pb-20">

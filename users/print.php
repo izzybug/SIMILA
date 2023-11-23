@@ -1,3 +1,5 @@
+<?php include('../includes/config.php'); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +46,9 @@
 			<th>Pembentukan Istilan Medis</th>
 			<th>Arti</th>
 		</tr>
-		<?php 
-		$koneksi = mysqli_connect('localhost','root','','simpen');
+		<?php
 		$no = 1;
-		$sql = mysqli_query($koneksi,"select * from daftar_istilah_medis");
+		$sql = mysqli_query($conn,"select * from daftar_istilah_medis");
 		while($data = mysqli_fetch_array($sql)){
 		?>
 		<tr>

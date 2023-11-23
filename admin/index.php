@@ -27,7 +27,7 @@
 			<div class="card-box pd-20 height-100-p mb-30">
 				<div class="row align-items-center">
 					<div class="col-md-4 user-icon">
-						<img src="../vendors/images/banner-img.png" alt="">
+						<img src="../vendors/images/undraw_hello_re_3evm.svg" alt="" style="height: 200px; width:500px">
 					</div>
 					<div class="col-md-8">
 

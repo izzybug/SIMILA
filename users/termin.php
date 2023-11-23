@@ -42,7 +42,7 @@
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<a class="btn btn-danger float-right" href="print.php"> <i class="fa fa-print"></i>Print</a>
+						<a class="btn btn-primary float-right" href="print.php"> <i class="fa fa-print"></i>Print</a>
 						<h2 class="text-blue h4">Terminologis Kehamilan</h2>
 					</div>
 				<div class="pb-20">
@@ -59,8 +59,7 @@
 							<tr>
 
 								<?php 
-								$koneksi = mysqli_connect('localhost','root','','simpen');
-								$tampil = mysqli_query($koneksi, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
 								$x = 1;
 								while ($row = mysqli_fetch_array($tampil)) {
 

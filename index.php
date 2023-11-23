@@ -15,11 +15,13 @@ if(isset($_POST['signin']))
 		    if ($row['role'] == 'admin') {
 		    	$_SESSION['alogin']=$row['id'];
 				$_SESSION['email']=$row['email'];
+				$session_role = $_SESSION['role'];
 			 	echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
 		    }
 		    elseif ($row['role'] == 'student') {
 		    	$_SESSION['alogin']=$row['id'];
 				$_SESSION['email']=$row['email'];
+				$session_role = $_SESSION['role'];
 			 	echo "<script type='text/javascript'> document.location = 'users/index.php'; </script>";
 		    }
 		}

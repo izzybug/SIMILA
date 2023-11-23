@@ -23,11 +23,13 @@
 	<div class="mobile-menu-overlay"></div>
 
 	<div class="main-container">
-		<div class="row">
-			<div class="col-9 pd-ltr-20">
+			<div class="pd-ltr-20">
 				<div class="card-box pd-20 height-10-p mb-30">
 					<div class="row align-items-center">
-						<div class="col-md-4">
+						<div class="col-md-4 user-icon">
+							<img src="../vendors/images/undraw_welcome_cats_thqn.svg" alt="" style="height: 200px; width:500px">
+						</div>
+						<div class="col-md-8">
 
 							<?php $query= mysqli_query($conn,"select * from users where id = '$session_id'")or die(mysqli_error());
 									$row = mysqli_fetch_array($query);
@@ -36,58 +38,51 @@
 							<h4 class="font-20 weight-500 mb-10 text-capitalize">
 								Hi, <?php echo $row['username'] ?> 👋
 							</h4>
-							<p class="font-18 max-width-600 text-gray">Nice to see you again!</p>
+							<p class="font-18 max-width-600 text-gray">Ini adalah Sistem Terminologis Kehamilan Poltekkes Tasikmalaya.</p>
 						</div>
 					</div>
 				</div>
 
 				<div class="card-box mb-30">
 					<div class="pd-20">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="kuis.php?q=1" ><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See all</a>
 						<h2 class="text-blue h4">HISTORI UJIAN</h2>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
 							<thead>
 								<tr>
-									<th class="table-plus">MATA KULIAH</th>
-									<th>TANGGAL</th>
-									<th>STATUS</th>
-									<th class="datatable-nosort">ACTION</th>
+									<th class="table-plus">No</th>
+									<th class="datatable-nosort">Pertanyaan</th>
+									<th class="datatable-nosort">Pertanyaan Terjawab</th>
+									<th>Benar</th>
+									<th>Salah</th>
+									<th>Skor</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- <tr>
-									<?php 
-										// $sql = "SELECT * from tblpengajuan where empid = '$session_id'";
-										// $query = $dbh -> prepare($sql);
-										// $query->execute();
-										// $results=$query->fetchAll(PDO::FETCH_OBJ);
-										// $cnt=1;
-										// if($query->rowCount() > 0)
-										// {
-										// foreach($results as $result)
-										// {               ?>  
+								<tr>
+									<?php
+										$tampil = mysqli_query($conn, "SELECT quiz.title, history.level, history.sahi, history.wrong, history.score 
+										FROM history 
+										JOIN quiz ON history.eid = quiz.eid 
+										ORDER BY history.date DESC 
+										LIMIT 4") or die('Error');
+		
+										$x = 1;
+										while ($row = mysqli_fetch_array($tampil)) {
+										?>  
 
-									<td><?php echo htmlentities($result->Keperluan);?></td>
-									<td><?php echo htmlentities($result->PostingDate);?></td>
-									<td><?php $stats=$result->Status;
-										if($stats==1){
-											?>
-											<span style="color: green">Approved</span>
-												<?php } if($stats==2)  { ?>
-											<span style="color: red">Not Approved</span>
-												<?php } if($stats==0)  { ?>
-											<span style="color: blue">Pending</span>
-											<?php } ?>
-
+										<td class="table-plus">
+											<?php echo $x; ?>
 										</td>
-									<td>
-										<div class="table-actions">
-											<a title="VIEW" href="view_apply.php?edit=<?php //echo htmlentities($result->kti_id);?>" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
-										</div>
-									</td>
+										<td><?php echo $row['title']; ?></td>
+										<td><?php echo $row['level']; ?></td>
+										<td><?php echo $row['sahi'];?></td>
+										<td><?php echo $row['wrong'];?></td>
+										<td><?php echo $row['score'];?></td>
 								</tr>
-								<?php // $cnt++;} }?>   -->
+								<?php $x++;}?>
 							</tbody>
 						</table>
 					</div>
@@ -95,25 +90,25 @@
 
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<a class="btn float-right" href="termin.php">See All</a>
-						<h2 class="text-blue h4">Terminologis Kehamilan</h2>
-					</div>
+							<a class="btn btn-primary float-right" style="margin-left: 10px;" href="termin.php"><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See All</a>
+							<h2 class="text-blue h4">Terminologis Kehamilan</h2>
+						</div>
 					<div class="pb-20">
-						<table class="data-table table stripe hover nowrap">
+						<table class="data-table table-bordered table stripe hover ">
 							<thead>
 								<tr>
 									<th class="table-plus">No</th>
 									<th>Istilah medis</th>
 									<th>Pembentukan Istilah Medis</th>
 									<th class="datatable-nosort">Arti</th>
+									<th class="datatable-nosort">Opsi</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 
 									<?php 
-									$koneksi = mysqli_connect('localhost','root','','simpen');
-									$tampil = mysqli_query($koneksi, "SELECT * FROM daftar_istilah_medis LIMIT 5") or die(mysqli_error());
+									$tampil = mysqli_query($conn, "SELECT * FROM `daftar_istilah_medis` LIMIT 5") or die(mysqli_error());
 									$x = 1;
 									while ($row = mysqli_fetch_array($tampil)) {
 
@@ -125,15 +120,25 @@
 									<td><?php echo $row['istilah_medis']; ?></td>
 									<td><?php echo $row['pembentukan_istilah_medis']; ?></td>
 									<td><?php echo $row['arti'];?></td>
-
+									<td>
+										<div class="dropdown">
+											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+												<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
+												<a class="dropdown-item" href="termin.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
+											</div>
+										</div>
+									</td>
 								</tr>
 								<?php $x++;}?>
 							</tbody>
 						</table>
 					</div>
 				</div>
+				<?php include('includes/footer.php'); ?>
 			</div>
-			<div class="col-3 pd-ltr-20">
+			<!-- <div class="col-3 pd-ltr-20">
 				<div class="card-box height-200-p mb-30">
 					<div class="image-container" style="position: relative; display: flex; flex-direction: column; align-items: center;">
 						<img src="../src/images/2.jpg" class="img-fluid" style="border-radius: 0.7rem 0.7rem 0 0; width: 100%;">
@@ -152,9 +157,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
+			</div> -->
 	</div>
 	<!-- js -->
 	<?php include('includes/scripts.php')?>

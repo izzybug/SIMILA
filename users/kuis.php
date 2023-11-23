@@ -1,0 +1,143 @@
+<?php include('includes/header.php')?>
+<?php include('../includes/session.php')?>
+
+<body>
+	<!-- <div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div> -->
+
+	<?php include('includes/navbar.php')?>
+
+	<?php include('includes/right_sidebar.php')?>
+
+	<?php include('includes/left_sidebar.php')?>
+
+	<div class="mobile-menu-overlay"></div>
+
+	<div class="mobile-menu-overlay"></div>
+
+	<div class="main-container">
+		<div class="pb-20">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>SIPARTI</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Kuis</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+
+				<div class="pd-20 card-box mb-30">
+					<div class="clearfix">
+						<div class="pull-left">
+							<h4 class="text-blue h4">Yuk Kuis</h4></h4>
+							<p class="mb-20"></p>
+						</div>
+					</div>
+					<div class="wizard-content">
+						<?php if(@$_GET['q']==1) 
+						{
+							$result = mysqli_query($conn,"SELECT * FROM `quiz` ORDER BY date DESC") or die('Error');
+							echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
+							<tr><td><center><b>No</b></center></td><td><center><b>Pertanyaan</b></center></td><td><center><b>Total Pertanyaan</b></center></td><td><center><b>Total Skor</center></b></td><td><center><b>Aksi</b></center></td></tr>';
+							$c=1;
+							while($row = mysqli_fetch_array($result)) {
+								$title = $row['title'];
+								$total = $row['total'];
+								$sahi = $row['sahi'];
+								$eid = $row['eid'];
+							$q12=mysqli_query($conn,"SELECT score FROM `history` WHERE `eid`='$eid' AND `email`='$email'" )or die('Error98');
+							$rowcount=mysqli_num_rows($q12);	
+							if($rowcount == 0){
+								echo '<tr><td><center>'.$c++.'</center></td><td><center>'.$title.'</center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="kuis.php?q=quiz&step=2&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:green"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Start</span></a></b></center></td></tr>';
+							}
+							else
+							{
+							echo '<tr style="color:#99cc32"><td><center>'.$c++.'</center></td><td><center>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:red"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Ulang</span></a></b></center></td></tr>';
+							}
+							}
+							$c=0;
+							echo '</table></div></div>';
+						}?>
+
+						<?php
+							if(@$_GET['q']== 'quiz' && @$_GET['step']== 2) 
+							{
+								$eid=@$_GET['eid'];
+								$sn=@$_GET['n'];
+								$total=@$_GET['t'];
+								$q=mysqli_query($conn,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
+								echo '<div class="panel" style="margin:5%">';
+								while($row=mysqli_fetch_array($q) )
+								{
+									$qns=$row['qns'];
+									$qid=$row['qid'];
+									echo '<b>Question &nbsp;'.$sn.'&nbsp;::<br /><br />'.$qns.'</b><br /><br />';
+								}
+								$q=mysqli_query($conn,"SELECT * FROM options WHERE qid='$qid' " );
+								echo '<form action="update.php?q=quiz&step=2&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'" method="POST"  class="form-horizontal">
+								<br />';
+
+								while($row=mysqli_fetch_array($q) )
+								{
+									$option=$row['option'];
+									$optionid=$row['optionid'];
+									echo'<input type="radio" name="ans" value="'.$optionid.'">&nbsp;'.$option.'<br /><br />';
+								}
+								echo'<br /><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Submit</button></form></div>';
+							}
+
+							if(@$_GET['q']== 'result' && @$_GET['eid']) 
+							{
+								$eid=@$_GET['eid'];
+								$q=mysqli_query($conn,"SELECT * FROM history WHERE eid='$eid' AND email='$email' " )or die('Error157');
+								echo  '<div class="panel">
+								<center><h1 class="title" style="color:#660033">Hasil</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
+
+								while($row=mysqli_fetch_array($q) )
+								{
+									$s=$row['score'];
+									$w=$row['wrong'];
+									$r=$row['sahi'];
+									$qa=$row['level'];
+									echo '<tr style="color:#66CCFF"><td>Total Pertanyaan</td><td>'.$qa.'</td></tr>
+										<tr style="color:#99cc32"><td>Jawaban Benar&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td><td>'.$r.'</td></tr> 
+										<tr style="color:red"><td>Jawaban Salah&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td><td>'.$w.'</td></tr>
+										<tr style="color:#66CCFF"><td>Skor&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+								}
+								$q=mysqli_query($conn,"SELECT * FROM rank WHERE  email='$email' " )or die('Error157');
+								while($row=mysqli_fetch_array($q) )
+								{
+									$s=$row['score'];
+									
+								}
+								echo '</table></div>';
+							}
+						?>
+					</div>
+				</div>
+			</div>
+			<?php include('includes/footer.php'); ?>
+		</div>
+	</div>
+	<!-- js -->
+	<?php include('includes/scripts.php')?>
+</body>
+</html>

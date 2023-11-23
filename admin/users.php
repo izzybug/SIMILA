@@ -59,7 +59,7 @@ if (isset($_GET['delete'])) {
 								<div class="font-14 text-secondary weight-500">Total Pengguna</div>
 							</div>
 							<div class="widget-icon">
-								<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-user-2"></i></div>
+								<div class="icon" data-color="#ffff"><i class="fa-solid fa-users"></i></div>
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@ if (isset($_GET['delete'])) {
 								<div class="font-14 text-secondary weight-500">Student</div>
 							</div>
 							<div class="widget-icon">
-								<div class="icon" data-color="#09cc06"><span class="icon-copy fa fa-hourglass"></span></div>
+								<div class="icon" data-color="#ffff"><i class="fa-solid fa-user-graduate"></i></span></div>
 							</div>
 						</div>
 					</div>
@@ -97,7 +97,7 @@ if (isset($_GET['delete'])) {
 								<div class="font-14 text-secondary weight-500">Administrators</div>
 							</div>
 							<div class="widget-icon">
-								<div class="icon" data-color="#ff5b5b"><i class="icon-copy fa fa-hourglass-o" aria-hidden="true"></i></div>
+								<div class="icon" data-color="#ffff"><i class="fa-solid fa-users-gear" aria-hidden="true"></i></div>
 							</div>
 						</div>
 					</div>
@@ -106,7 +106,7 @@ if (isset($_GET['delete'])) {
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<a class="btn btn-baru float-right" href="tambah_user.php" >Tambah User</a>
+						<a class="btn btn-baru float-right" href="tambah_user.php" ><i class="fa-solid fa-user-plus"></i> Tambah User</a>
 						<h2 class="text-blue h4">All Users</h2>
 					</div>
 				<div class="pb-20">

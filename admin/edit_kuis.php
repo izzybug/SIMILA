@@ -30,7 +30,7 @@ if(isset($_POST['proses'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tambah Kuis</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Kuis</li>
                                 </ol>
                             </nav>
                         </div>
@@ -40,7 +40,7 @@ if(isset($_POST['proses'])) {
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-blue h4">Tambah Kuis</h4>
+                            <h4 class="text-blue h4">Edit Kuis</h4>
                             <p class="mb-20"></p>
                         </div>
                     </div>
