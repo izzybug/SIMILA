@@ -54,13 +54,13 @@
 					<div class="wizard-content">
 						<?php if(@$_GET['q']==2) 
 						{
-              $result = mysqli_query($conn,"SELECT * FROM `quiz`") or die('Error');
+              $result = mysqli_query($conn,"SELECT * FROM `quiz` where eid='$_GET[eid]'") or die('Error');
 							$row = mysqli_fetch_array($result);
 								$total = $row['total'];
 								$eid = $row['eid'];
                 echo '<div class="row">
                 <div class="col-md-6"></div><div class="col-md-12">   
-                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'&t='.$total.'"  method="POST">
+                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'&n=1&t='.$total.'"  method="POST">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-md-12 control-label" for="name"></label>  

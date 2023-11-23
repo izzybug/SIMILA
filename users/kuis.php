@@ -66,7 +66,7 @@
 							$q12=mysqli_query($conn,"SELECT score FROM `history` WHERE `eid`='$eid' AND `email`='$email'" )or die('Error98');
 							$rowcount=mysqli_num_rows($q12);	
 							if($rowcount == 0){
-								echo '<tr><td><center>'.$c++.'</center></td><td><center>'.$title.'</center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="mulai_kuis.php?q=2&step=2&eid='.$eid.'" class="btn sub1" style="color:#ffff;margin:0px;background:green"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Start</span></a></b></center></td></tr>';
+								echo '<tr><td><center>'.$c++.'</center></td><td><center>'.$title.'</center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="mulai_kuis.php?q=2&step=2&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:green"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Start</span></a></b></center></td></tr>';
 							}
 							else
 							{

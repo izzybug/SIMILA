@@ -89,7 +89,7 @@
       $total=@$_GET['t'];
       $eid=@$_GET['eid'];
       $username=$_POST['username'];
-      $q = mysqli_query($conn, "UPDATE history SET username = '$username' WHERE eid = '$eid'");
+      $q = mysqli_query($conn, "INSERT INTO users_kuis (`username`, `eid`) VALUES ('$username', '$eid')");
       header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total");
   }
 
@@ -148,7 +148,7 @@
     if($sn != $total)
     {
       $sn++;
-      header("location:kuis.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total")or die('Error152');
+      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=$sn&t=$total")or die('Error152');
     }
     // else if( $_SESSION['key']!='suryapinky')
     // {
@@ -176,7 +176,7 @@
     // }
     else
     {
-      header("location:kuis.php?q=result&eid=$eid");
+      header("location:mulai_kuis.php?q=result&eid=$eid");
     }
   }
 
@@ -198,7 +198,7 @@
     }
     $sun=$sun-$s;
     $q=mysqli_query($conn,"UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE email= '$email'")or die('Error174');
-    header("location:kuis.php?q=quiz&step=2&eid=$eid&n=1&t=$t");
+    header("location:kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$t");
   }
 ?>
 
