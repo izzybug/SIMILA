@@ -28,7 +28,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="kuis.php?q=1">Kuis</a></li>
-							<li><a href="apply_history.php">Histori Kuis</a></li>
+							<li><a href="histori.php">Histori Kuis</a></li>
 						</ul>
 					</li>
 				</ul>

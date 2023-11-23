@@ -103,9 +103,9 @@
       }
       if($sn == 1)
       {
-        $q=mysqli_query($conn,"INSERT INTO history (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0')")or die('Error');
+        $q=mysqli_query($conn,"INSERT INTO `history` (`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$email','$eid' ,'0','0','0','0')")or die('Error');
       }
-      $q=mysqli_query($conn,"SELECT * FROM history WHERE eid='$eid' AND email='$email' ")or die('Error115');
+      $q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND email='$email' ")or die('Error115');
       while($row=mysqli_fetch_array($q) )
       {
         $s=$row['score'];
@@ -141,30 +141,30 @@
       $sn++;
       header("location:kuis.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total")or die('Error152');
     }
-    else if( $_SESSION['key']!='suryapinky')
-    {
-      $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
-      while($row=mysqli_fetch_array($q) )
-      {
-        $s=$row['score'];
-      }
-      $q=mysqli_query($conn,"SELECT * FROM `rank` WHERE email='$email'" )or die('Error161');
-      $rowcount=mysqli_num_rows($q);
-      if($rowcount == 0)
-      {
-        $q2=mysqli_query($conn,"INSERT INTO `rank` VALUES('$email','$s',NOW())")or die('Error165');
-      }
-      else
-      {
-        while($row=mysqli_fetch_array($q) )
-        {
-          $sun=$row['score'];
-        }
-        $sun=$s+$sun;
-        $q=mysqli_query($conn,"UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE email= '$email'")or die('Error174');
-      }
-      header("location:welcome.php?q=result&eid=$eid");
-    }
+    // else if( $_SESSION['key']!='suryapinky')
+    // {
+    //   $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
+    //   while($row=mysqli_fetch_array($q) )
+    //   {
+    //     $s=$row['score'];
+    //   }
+    //   $q=mysqli_query($conn,"SELECT * FROM `rank` WHERE email='$email'" )or die('Error161');
+    //   $rowcount=mysqli_num_rows($q);
+    //   if($rowcount == 0)
+    //   {
+    //     $q2=mysqli_query($conn,"INSERT INTO `rank` VALUES('$email','$s',NOW())")or die('Error165');
+    //   }
+    //   else
+    //   {
+    //     while($row=mysqli_fetch_array($q) )
+    //     {
+    //       $sun=$row['score'];
+    //     }
+    //     $sun=$s+$sun;
+    //     $q=mysqli_query($conn,"UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE email= '$email'")or die('Error174');
+    //   }
+    //   header("location:kuis.php?q=result&eid=$eid");
+    // }
     else
     {
       header("location:kuis.php?q=result&eid=$eid");
@@ -176,20 +176,20 @@
     $eid=@$_GET['eid'];
     $n=@$_GET['n'];
     $t=@$_GET['t'];
-    $q=mysqli_query($conn,"SELECT score FROM history WHERE eid='$eid' AND email='$email'" )or die('Error156');
+    $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
     while($row=mysqli_fetch_array($q) )
     {
       $s=$row['score'];
     }
     $q=mysqli_query($conn,"DELETE FROM `history` WHERE eid='$eid' AND email='$email' " )or die('Error184');
-    $q=mysqli_query($conn,"SELECT * FROM rank WHERE email='$email'" )or die('Error161');
+    $q=mysqli_query($conn,"SELECT * FROM `rank` WHERE email='$email'" )or die('Error161');
     while($row=mysqli_fetch_array($q) )
     {
       $sun=$row['score'];
     }
     $sun=$sun-$s;
     $q=mysqli_query($conn,"UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE email= '$email'")or die('Error174');
-    header("location:welcome.php?q=quiz&step=2&eid=$eid&n=1&t=$t");
+    header("location:kuis.php?q=quiz&step=2&eid=$eid&n=1&t=$t");
   }
 ?>
 

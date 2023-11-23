@@ -2,7 +2,7 @@
 <?php include('../includes/session.php')?>
 
 <body>
-	<!-- <div class="pre-loader">
+	<div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -13,7 +13,7 @@
 				Loading...
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 	<?php include('includes/navbar.php')?>
 
@@ -107,7 +107,7 @@
 							if(@$_GET['q']== 'result' && @$_GET['eid']) 
 							{
 								$eid=@$_GET['eid'];
-								$q=mysqli_query($conn,"SELECT * FROM history WHERE eid='$eid' AND email='$email' " )or die('Error157');
+								$q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND email='$email' " )or die('Error157');
 								echo  '<div class="panel">
 								<center><h1 class="title" style="color:#660033">Hasil</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
 
@@ -117,10 +117,10 @@
 									$w=$row['wrong'];
 									$r=$row['sahi'];
 									$qa=$row['level'];
-									echo '<tr style="color:#66CCFF"><td>Total Pertanyaan</td><td>'.$qa.'</td></tr>
+									echo '<tr style="color:black"><td>Total Pertanyaan</td><td>'.$qa.'</td></tr>
 										<tr style="color:#99cc32"><td>Jawaban Benar&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td><td>'.$r.'</td></tr> 
 										<tr style="color:red"><td>Jawaban Salah&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td><td>'.$w.'</td></tr>
-										<tr style="color:#66CCFF"><td>Skor&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+										<tr style="color:black"><td>Skor&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr> ';
 								}
 								$q=mysqli_query($conn,"SELECT * FROM rank WHERE  email='$email' " )or die('Error157');
 								while($row=mysqli_fetch_array($q) )
@@ -129,6 +129,7 @@
 									
 								}
 								echo '</table></div>';
+								echo'<div class="pd-20"><a class="btn btn-primary" href="kuis.php?q=1" > Back</a></div>';
 							}
 						?>
 					</div>
