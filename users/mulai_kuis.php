@@ -2,7 +2,7 @@
 <?php include('../includes/session.php')?>
 
 <body>
-	<div class="pre-loader">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -13,7 +13,7 @@
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
 
@@ -60,7 +60,7 @@
 								$eid = $row['eid'];
                 echo '<div class="row">
                 <div class="col-md-6"></div><div class="col-md-12">   
-                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'&n=1&t='.$total.'"  method="POST">
+                <form class="form-horizontal title1" name="form" action="update.php?q=quiz&step=2&eid='.$eid.'&t='.$total.'"  method="POST">
                     <fieldset>
                         <div class="form-group">
                             <label class="col-md-12 control-label" for="name"></label>  
@@ -96,7 +96,7 @@
 									echo '<b>Question &nbsp;'.$sn.'&nbsp;::<br /><br />'.$qns.'</b><br /><br />';
 								}
 								$q=mysqli_query($conn,"SELECT * FROM options WHERE qid='$qid' " );
-								echo '<form action="update.php?q=quiz&step=2&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'" method="POST"  class="form-horizontal">
+								echo '<form action="update.php?q=quiz&step=3&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'" method="POST"  class="form-horizontal">
 								<br />';
 
 								while($row=mysqli_fetch_array($q) )

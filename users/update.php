@@ -89,8 +89,8 @@
       $total=@$_GET['t'];
       $eid=@$_GET['eid'];
       $username=$_POST['username'];
-      $q=mysqli_query($conn,"INSERT INTO history (`username`) VALUES ($username)  WHERE eid = '$eid'" );
-      header("location:mulai_kuis.php?q=quiz&step=3&eid='.$eid.'&n=1&t='.$total.'");
+      $q = mysqli_query($conn, "UPDATE history SET username = '$username' WHERE eid = '$eid'");
+      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total");
   }
 
   if(@$_GET['q']== 'quiz' && @$_GET['step']== 3) 
