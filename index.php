@@ -122,7 +122,7 @@ if(isset($_POST['signin']))
 									<button class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit">Login</button>
 								</div>
 
-								<a class="small text-muted" href="#!">Forgot password?</a>
+								<!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
 								<!-- <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
 									style="color: #393f81;">Register here</a></p> -->
 								<br>

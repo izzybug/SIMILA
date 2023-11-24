@@ -70,7 +70,7 @@
 							}
 							else
 							{
-							echo '<tr style="color:#99cc32"><td><center>'.$c++.'</center></td><td><center>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:red"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Ulang</span></a></b></center></td></tr>';
+							echo '<tr style="color:#99cc32"><td><center>'.$c++.'</center></td><td><center>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="mulai_kuis.php?q=2&step=4&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:red"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Ulang</span></a></b></center></td></tr>';
 							}
 							}
 							$c=0;

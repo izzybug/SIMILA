@@ -118,7 +118,7 @@
 				<div class="col-lg-4 col-md-6 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Rank</div>
+							<div class="h5 mb-0">History</div>
 							<div class="table-actions">
 								<a title="VIEW" href="#"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
@@ -127,7 +127,12 @@
 						<div class="user-list">
 						<ul>
 								<?php
-		                         $query = mysqli_query($conn,"SELECT * FROM `rank` ORDER BY score DESC limit 4") or die(mysqli_error());
+		                         $query = mysqli_query($conn, "SELECT users_kuis.username ,quiz.title, history.score 
+								 FROM history 
+								 JOIN quiz ON history.eid = quiz.eid 
+								 JOIN users_kuis ON history.eid = users_kuis.eid
+								 ORDER BY history.date DESC 
+								 LIMIT 4") or die('Error');
 								 $x = 1;
 		                         while ($row = mysqli_fetch_array($query)) {
 		                             ?>
@@ -138,8 +143,9 @@
 											<img src="../src/images/ranking-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
 										</div>
 										<div class="txt">
-											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Rank <?php echo $x; ?></span>
-											<div class="font-14 weight-600"><?php echo $row['email']; ?></div>
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">No <?php echo $x; ?></span>
+											<div class="font-14 weight-600"><?php echo $row['username']; ?></div>
+											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['title']; ?></div>
 										</div>
 									</div>
 									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['score']; ?></div>

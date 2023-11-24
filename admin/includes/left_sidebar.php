@@ -33,6 +33,7 @@
 						</a>
 						<ul class="submenu">
 							<li><a href="users.php">Manage Users</a></li>
+							<li><a href="histori.php">Histori Kuis</a></li>
 						</ul>
 					</li>
 				</ul>
