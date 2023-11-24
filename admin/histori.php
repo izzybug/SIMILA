@@ -1,5 +1,6 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
+
 <body>
 <div class="pre-loader">
 		<div class="pre-loader-box">
@@ -45,6 +46,7 @@
 				<div class="wizard-content">
 						<div class="card-box mb-30">
 							<div class="pd-20">
+								<a class="btn btn-primary float-right" style="margin-left: 10px;" href="kuis.php?q=1" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> Yuk Kuis</a>
 								<h2 class="text-blue h4">HISTORI KUIS</h2>
 							</div>
 							<div class="pb-20">
@@ -63,15 +65,17 @@
 									<tbody>
 										<tr>
 											<?php
-												$tampil = mysqli_query($conn, "SELECT users_kuis.username, history.level, history.sahi, history.wrong, history.score 
+												$tampil = mysqli_query($conn, "SELECT users_kuis.username ,quiz.title, history.level, history.sahi, history.wrong, history.score 
 												FROM history 
-												JOIN users_kuis ON history.id = users_kuis.id
-												WHERE history.id = users_kuis.id
+												JOIN quiz ON history.eid = quiz.eid 
+												JOIN users_kuis ON history.eid = users_kuis.eid
+												WHERE history.id_users = users_kuis.id
 												ORDER BY history.date DESC") or die('Error');
 				
 												$x = 1;
 												while ($row = mysqli_fetch_array($tampil)) {
 												?>  
+
 												<td class="table-plus">
 													<?php echo $x; ?>
 												</td>
