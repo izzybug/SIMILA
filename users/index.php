@@ -68,8 +68,9 @@
 										FROM history 
 										JOIN quiz ON history.eid = quiz.eid 
 										JOIN users_kuis ON history.eid = users_kuis.eid
-										ORDER BY history.date DESC 
-										LIMIT 4") or die('Error');
+										WHERE history.id_users = users_kuis.id
+										ORDER BY history.date DESC
+										LIMIT 5") or die('Error');
 		
 										$x = 1;
 										while ($row = mysqli_fetch_array($tampil)) {

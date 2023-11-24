@@ -90,7 +90,10 @@
       $eid=@$_GET['eid'];
       $username=$_POST['username'];
       $q = mysqli_query($conn, "INSERT INTO users_kuis (`username`, `eid`) VALUES ('$username', '$eid')");
-      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total");
+      $q=mysqli_query($conn,"SELECT * FROM users_kuis WHERE username='$username'" );
+      $row=mysqli_fetch_array($q);
+      $usr=$row['username'];
+      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total&usr=$usr");
   }
 
   if(@$_GET['q']== 'quiz' && @$_GET['step']== 3) 
@@ -151,69 +154,9 @@
       $sn++;
       header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=$sn&t=$total")or die('Error152');
     }
-    // else if( $_SESSION['key']!='suryapinky')
-    // {
-    //   $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
-    //   while($row=mysqli_fetch_array($q) )
-    //   {
-    //     $s=$row['score'];
-    //   }
-    //   $q=mysqli_query($conn,"SELECT * FROM `rank` WHERE email='$email'" )or die('Error161');
-    //   $rowcount=mysqli_num_rows($q);
-    //   if($rowcount == 0)
-    //   {
-    //     $q2=mysqli_query($conn,"INSERT INTO `rank` VALUES('$email','$s',NOW())")or die('Error165');
-    //   }
-    //   else
-    //   {
-    //     while($row=mysqli_fetch_array($q) )
-    //     {
-    //       $sun=$row['score'];
-    //     }
-    //     $sun=$s+$sun;
-    //     $q=mysqli_query($conn,"UPDATE `rank` SET `score`=$sun ,time=NOW() WHERE email= '$email'")or die('Error174');
-    //   }
-    //   header("location:kuis.php?q=result&eid=$eid");
-    // }
     else
     {
-      header("location:mulai_kuis.php?q=result&eid=$eid");
+      header("location:mulai_kuis.php?q=result&eid=$eid&usr=$usr");
     }
-  }
-
-  if(@$_GET['q']== 'quizre' && @$_GET['step']== 25 ) 
-  {
-    $eid=@$_GET['eid'];
-    $usr=@$_GET['usr'];
-    $n=@$_GET['n'];
-    $t=@$_GET['t'];
-    $q=mysqli_query($conn,"SELECT `score` FROM `history` WHERE eid='$eid' AND email='$email'" )or die('Error156');
-    while($row=mysqli_fetch_array($q) )
-    {
-      $s=$row['score'];
-    }
-    $q = mysqli_query($conn, "DELETE history, users_kuis
-    FROM history
-    JOIN users_kuis ON history.eid = users_kuis.eid
-    WHERE history.eid = '$eid' AND users_kuis.username = '$usr'")
-    or die('Error184');
-    $q=mysqli_query($conn,"SELECT users_kuis.username ,history.score 
-    FROM history 
-    JOIN quiz ON history.eid = quiz.eid 
-    JOIN users_kuis ON history.eid = users_kuis.eid WHERE eid='$eid' AND users_kuis.username = '$usr'" )or die('Error161');
-    while($row=mysqli_fetch_array($q))
-    {
-      $sun=$row['score'];
-    }
-    $sun=$sun-$s;
-    $q = mysqli_query($conn, "UPDATE history
-                          JOIN users_kuis ON history.eid = users_kuis.eid
-                          SET history.score = $sun
-                          WHERE history.eid = '$eid' AND users_kuis.username = '$usr'")
-     or die('Error updating score');
-    header("location:_mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$t");
   }
 ?>
-
-
-

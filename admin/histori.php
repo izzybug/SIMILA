@@ -63,17 +63,15 @@
 									<tbody>
 										<tr>
 											<?php
-												$tampil = mysqli_query($conn, "SELECT users_kuis.username ,quiz.title, history.level, history.sahi, history.wrong, history.score 
+												$tampil = mysqli_query($conn, "SELECT users_kuis.username, history.level, history.sahi, history.wrong, history.score 
 												FROM history 
-												JOIN quiz ON history.eid = quiz.eid 
-												JOIN users_kuis ON history.eid = users_kuis.eid
-												ORDER BY history.date DESC 
-												LIMIT 4") or die('Error');
+												JOIN users_kuis ON history.id = users_kuis.id
+												WHERE history.id = users_kuis.id
+												ORDER BY history.date DESC") or die('Error');
 				
 												$x = 1;
 												while ($row = mysqli_fetch_array($tampil)) {
 												?>  
-
 												<td class="table-plus">
 													<?php echo $x; ?>
 												</td>

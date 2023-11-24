@@ -79,40 +79,14 @@
 								</form></div>';
 											}
 							?>
-							<?php if(@$_GET['q']==4) {
-							$result = mysqli_query($conn,"SELECT * FROM `quiz` where eid='$_GET[eid]'") or die('Error');
-											$row = mysqli_fetch_array($result);
-												$total = $row['total'];
-												$usr = $row['username'];
-												$eid = $row['eid'];
-								echo '<div class="row">
-								<div class="col-md-6"></div><div class="col-md-12">   
-								<form class="form-horizontal title1" name="form" action="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'&usr='.$usr.'"  method="POST">
-									<fieldset>
-										<div class="form-group">
-											<label class="col-md-12 control-label" for="name"></label>
-											<div class="col-md-12">
-												<input id="username" name="username" placeholder="Masukkan Nama Anda" class="form-control input-md" type="text">
-											</div>
-										</div>
-
-										<div class="form-group">
-											<label class="col-md-12 control-label" for=""></label>
-											<div class="col-md-12"> 
-												<input  type="submit" style="margin-left:45%" class="btn btn-primary" value="Submit" class="btn btn-primary"/>
-											</div>
-										</div>
-									</fieldset>
-								</form></div>';
-											}
-							?>
 						<?php
 							if(@$_GET['q']== 'quiz' && @$_GET['step']== 3) 
 							{
 								$eid=@$_GET['eid'];
 								$sn=@$_GET['n'];
 								$total=@$_GET['t'];
-								$user=mysqli_query($conn,"SELECT * FROM users_kuis WHERE eid='$eid'" )or die('Error');
+								$usr=@$_GET['usr'];
+								$user=mysqli_query($conn,"SELECT * FROM users_kuis WHERE username='$usr'" )or die('Error');
 								$q=mysqli_query($conn,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
 								$row = mysqli_fetch_array($user);
 								$usr = $row['id'];
@@ -139,7 +113,8 @@
 							if(@$_GET['q']== 'result' && @$_GET['eid']) 
 							{
 								$eid=@$_GET['eid'];
-								$q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND email='$email' " )or die('Error157');
+								$usr=@$_GET['usr'];
+								$q=mysqli_query($conn,"SELECT * FROM `history` WHERE id_users='$usr' " )or die('Error157');
 								echo  '<div class="panel">
 								<center><h1 class="title" style="color:#660033">Hasil</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
 

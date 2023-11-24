@@ -63,15 +63,7 @@
 								$total = $row['total'];
 								$sahi = $row['sahi'];
 								$eid = $row['eid'];
-							$q12=mysqli_query($conn,"SELECT score FROM `history` WHERE `eid`='$eid' AND `email`='$email'" )or die('Error98');
-							$rowcount=mysqli_num_rows($q12);	
-							if($rowcount == 0){
 								echo '<tr><td><center>'.$c++.'</center></td><td><center>'.$title.'</center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="mulai_kuis.php?q=2&step=2&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:green"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Start</span></a></b></center></td></tr>';
-							}
-							else
-							{
-							echo '<tr style="color:#99cc32"><td><center>'.$c++.'</center></td><td><center>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></center></td><td><center>'.$total.'</center></td><td><center>'.$sahi*$total.'</center></td><td><center><b><a href="mulai_kuis.php?q=2&step=4&eid='.$eid.'&n=1&t='.$total.'" class="btn sub1" style="color:#ffff;margin:0px;background:red"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1">Ulang</span></a></b></center></td></tr>';
-							}
 							}
 							$c=0;
 							echo '</table></div></div>';
