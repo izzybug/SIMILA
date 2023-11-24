@@ -38,8 +38,8 @@
 							<h4 class="font-20 weight-500 mb-10 text-capitalize">
 								Hi, <?php echo $row['username'] ?> 👋
 							</h4>
-							<p class="font-18 max-width-600 text-gray">Selamat datang, Ini adalah platform belajar Sistem Terminologi Medis Kasus Kehamilan Poltekkes Kemenkes Tasikmalaya. 
-								Semangat belajar semoga sukses!</p>
+							<p class="font-18 max-width-600 text-gray">Selamat datang, Ini adalah platform belajar Sistem Terminologi Medis Kasus Kehamilan Poltekkes Kemenkes Tasikmalaya.</p>
+							<p class="font-18 max-width-600 text-gray">Semangat belajar semoga sukses!</p>
 						</div>
 					</div>
 				</div>
