@@ -113,7 +113,7 @@
       }
       if($sn == 1)
       {
-        $q=mysqli_query($conn,"INSERT INTO `history` (`id_users`,email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$usr','$email','$eid' ,'0','0','0','0')")or die('Error');
+        $q=mysqli_query($conn,"INSERT INTO `history` (`id_users`,`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$usr','$email','$eid' ,'0','0','0','0')")or die('Error');
       }
       $q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND email='$email' ")or die('Error115');
       while($row=mysqli_fetch_array($q) )
