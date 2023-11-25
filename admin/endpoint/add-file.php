@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "
             <script>
                 alert('A file with the same name already exists. Please choose a different name for your file.');
-                window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+                window.location.href = 'https://simila-lfotu.ondigitalocean.app/admin/materi.php';
             </script>";
         } else {
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
@@ -32,21 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "
                     <script>
                         alert('File uploaded and data inserted into the database successfully!');
-                        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+                        window.location.href = 'https://simila-lfotu.ondigitalocean.app/admin/materi.php';
                     </script>
                     ";
                 } else {
                     echo "
                     <script>
                         alert('Error inserting data into the database.');
-                        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+                        window.location.href = 'https://simila-lfotu.ondigitalocean.app/admin/materi.php';
                     </script>";
                 }
             } else {
                 echo "
                 <script>
                     alert('Error uploading the file.');
-                    window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+                    window.location.href = 'https://simila-lfotu.ondigitalocean.app/admin/materi.php';
                 </script>";
             }
         }
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <script>
             alert('Please fill out the required fields.');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+            window.location.href = 'https://simila-lfotu.ondigitalocean.app/admin/materi.php';
         </script>";
     }
 }
