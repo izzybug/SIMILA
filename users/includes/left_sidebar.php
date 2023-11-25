@@ -5,9 +5,10 @@
 				<img src="../src/images/loader_logo/simila-white.png" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
-				<i class="ion-close-round"></i>
+				<i class="fa-solid fa-circle-chevron-left fa-2xl" style="color: #fffff;"></i>
 			</div>
 		</div>
+		<br>
 		<div class="menu-block customscroll">
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
@@ -18,12 +19,12 @@
 					</li>
 					<li class="dropdown">
 						<a href="materi.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Materi</span>
+							<span class="micon dw dw-library"></span><span class="mtext">Materi</span>
 						</a>
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Terminologi</span>
+							<span class="micon dw dw-book"></span><span class="mtext">Terminologi</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="termin.php">Istilah Medis</a></li>
@@ -32,7 +33,7 @@
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-apartment"></span><span class="mtext"> Kuis </span>
+							<span class="micon dw dw-pencil"></span><span class="mtext"> Kuis </span>
 						</a>
 						<ul class="submenu">
 							<li><a href="kuis.php?q=1">Kuis</a></li>

@@ -1576,16 +1576,16 @@ table.dataTable.dtr-inline.collapsed
   height: calc(100vh - 70px);
 }
 .left-side-bar .close-sidebar {
-  font-size: 18px;
-  color: #888;
+  font-size: 20px;
+  color: #ffffff;
   cursor: pointer;
   position: absolute;
-  right: 10px;
+  right: -13px;
   top: 20px;
   display: none;
 }
 .sidebar-menu {
-  padding: 0 0 20px;
+  padding: 0 10px 30px 10px;
 }
 .sidebar-menu .dropdown-toggle {
   display: block;
@@ -1620,6 +1620,7 @@ table.dataTable.dtr-inline.collapsed
 .sidebar-menu .dropdown-toggle:hover,
 .sidebar-menu .show > .dropdown-toggle {
   background: rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
   color: #fff;
 }
 .sidebar-menu .dropdown-toggle .micon {
@@ -1750,9 +1751,11 @@ table.dataTable.dtr-inline.collapsed
 .sidebar-menu .submenu li a:hover {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
 }
 .sidebar-menu > ul > li > .dropdown-toggle.active {
   background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 30px;
 }
 .sidebar-light .sidebar-menu > ul > li > .dropdown-toggle.active {
   background-color: #b33c69;
@@ -3939,6 +3942,15 @@ body.IE .register-page-wrap .container {
   .left-side-bar .brand-logo a .svg,
   .left-side-bar .brand-logo a img {
     margin: 0;
+  }
+  .mobile-menu-overlay {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .mobile-menu-overlay.show {
+    opacity: 0.6;
+    visibility: visible;
   }
 @media (min-width: 1301px) and (max-width: 1400px) {
   .header {
