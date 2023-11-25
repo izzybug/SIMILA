@@ -34,7 +34,7 @@
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
+										<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
 										<li class="breadcrumb-item active" aria-current="page">List Materi</li>
 									</ol>
 								</nav>
@@ -123,7 +123,7 @@
 									<table class="table table-hover data-table stripe  text-center" id="fileTable">
 										<thead>
 											<tr>
-												<th class="table-plus" scope="col">File ID</th>
+												<th class="table-plus" scope="col">No</th>
 												<th scope="col">File Title</th>
 												<th scope="col">File</th>
 												<th scope="col">Uploaded By</th>
@@ -137,7 +137,7 @@
 												$stmt = $dbh->prepare("SELECT * FROM `tbl_file`");
 												$stmt->execute();
 												$result = $stmt->fetchAll();
-
+												$x=1;
 												foreach ($result as $row) {
 													$fileID = $row['tbl_file_id'];
 													$fileTitle = $row['file_title'];
@@ -145,10 +145,9 @@
 													$fileUploader = $row['file_uploader'];
 													$dateUploaded = $row['date_uploaded'];
 
-
 												?>
 												<tr class="table-plus">
-													<th id="fileID-<?= $fileID ?>"><?php echo $fileID ?></th>
+													<th id="fileID-<?= $fileID ?>"><?php echo $x; ?></th>
 													<td id="fileTitle-<?= $fileID ?>"><?php echo $fileTitle ?></td>
 													<td id="file-<?= $fileID ?>"><?php echo $file ?></td>
 													<td id="fileUploader-<?= $fileID ?>"><?php echo $fileUploader ?></td>
@@ -167,7 +166,7 @@
 														</select>
 													</td>
 												<?php 
-												}
+												$x++;}
 											?>
 										</tbody>
 									</table>

@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newFileName = null;
 
     if ($_FILES["file"]["name"]) {
-        $uploadDirectory = "../file-uploads/";
+        $uploadDirectory = "../../file-uploads/";
         $newFileName = $_FILES["file"]["name"];
         $targetFilePath = $uploadDirectory . $newFileName;
 

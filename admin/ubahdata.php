@@ -1,21 +1,45 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
-    $result = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis WHERE id = $_GET[id]");
+if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
+    $uid = $_GET['uid'];
+    $id = $_GET['id'];
+
+	$tableName = ($uid == 1) ? "daftar_istilah_medis" : "daftar_istilah_penanganan";
+
+    $result = mysqli_query($conn, "SELECT * FROM $tableName WHERE id = $id");
     $data = mysqli_fetch_array($result);
-	if(isset($_POST['proses'])){
-        $sql="update daftar_istilah_medis set 
-        istilah_medis = '$_POST[istilah_medis]',
-        pembentukan_istilah_medis = '$_POST[pembentukan_istilah_medis]',
-        arti = '$_POST[arti]'
-        where id = '$_POST[id]'";
-        mysqli_query($conn,$sql);
-    
-    
-        echo "<script>alert('Data telah diiubah')</script>";
-        echo "<meta http-equiv=refresh content=1;URL='termin.php'>";
+
+    if ($data) {
+        if (isset($_POST['proses'])) {
+            // Sanitize input data
+            $istilah_medis = mysqli_real_escape_string($conn, $_POST['istilah_medis']);
+            $pembentukan_istilah_medis = mysqli_real_escape_string($conn, $_POST['pembentukan_istilah_medis']);
+            $arti = mysqli_real_escape_string($conn, $_POST['arti']);
+
+            // Use prepared statement to update data
+            $updateQuery = "UPDATE $tableName SET istilah_medis=?, pembentukan_istilah_medis=?, arti=? WHERE id=?";
+            $stmt = mysqli_prepare($conn, $updateQuery);
+            mysqli_stmt_bind_param($stmt, "sssi", $istilah_medis, $pembentukan_istilah_medis, $arti, $id);
+            
+            if (mysqli_stmt_execute($stmt)) {
+                echo "<script>alert('Data telah diubah')</script>";
+                $redirectPage = ($uid == 1) ? 'termin.php' : 'termin_penanganan.php';
+            	echo "<meta http-equiv=refresh content='1;URL=$redirectPage?id=$id'>";
+            } else {
+                echo "Error updating data: " . mysqli_error($conn);
+            }
+
+            mysqli_stmt_close($stmt);
+        }
+    } else {
+        echo "Invalid ID.";
     }
+} else {
+    echo "Invalid request.";
+}
 ?>
+
 
 <body>
     <div class="pre-loader">
@@ -68,31 +92,35 @@
 						</div>
 					</div>
 					<div class="wizard-content">
-						<form method="post" action="">
+					<form method="post" action="">
 							<section>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                            <form action="" method="post">
-                                            <div class="">
-                                                <label>ISTILAH MEDIS :</label>
-                                                <input type="text" name="istilah_medis" class="form-control" value="<?php echo $data['istilah_medis']; ?>">
-                                                <input type="hidden" value="<?=$_GET['id']?>" name="id">
-                                            </div>
-                                            <br><br>
-                                            <div class="">
-                                                <label>PEMBENTUKAN ISTILAH MEDIS :</label>
-                                                <input type="text" name="pembentukan_istilah_medis" class="form-control" value="<?php echo $data['pembentukan_istilah_medis']; ?>">
-                                            </div>
-                                            <br><br>
-                                            <div class="">
-                                                <label>ARTI :</label>
-                                                <input type="text" name="arti" class="form-control" value="<?php echo $data['arti']; ?>">
-                                            </div>
-                                            <br>
-                                            <input type="submit" class="btn btn-primary" value="Simpan" name="proses">
-                                            <a href="termin.php" class="btn btn-secondary">Cancel</a>
-                                    </div>
-                                </div>
+								<div class="row">
+									<div class="col-md-12">
+										<form action="" method="post">
+											<div class="">
+												<label>ISTILAH MEDIS :</label>
+												<input type="text" name="istilah_medis" class="form-control" value="<?php echo $data['istilah_medis']; ?>">
+												<input type="hidden" value="<?=$_GET['id']?>" name="id">
+											</div>
+											<br><br>
+											<div class="">
+												<label>PEMBENTUKAN ISTILAH MEDIS :</label>
+												<input type="text" name="pembentukan_istilah_medis" class="form-control" value="<?php echo $data['pembentukan_istilah_medis']; ?>">
+											</div>
+											<br><br>
+											<div class="">
+												<label>ARTI :</label>
+												<input type="text" name="arti" class="form-control" value="<?php echo $data['arti']; ?>">
+											</div>
+											<br>
+											<input type="submit" class="btn btn-primary" name="proses">
+											<?php
+												$cancelLink = ($_GET['uid'] == 1) ? 'termin.php' : 'termin_penanganan.php';
+											?>
+											<a href="<?php echo $cancelLink; ?>" class="btn btn-secondary">Cancel</a>
+										</form>
+									</div>
+								</div>
 							</section>
 						</form>
 					</div>

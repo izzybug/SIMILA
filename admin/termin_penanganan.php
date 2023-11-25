@@ -44,7 +44,7 @@ if (isset($_GET['delete'])) {
 							</div>
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Terminologis</li>
 								</ol>
 							</nav>
@@ -92,7 +92,7 @@ if (isset($_GET['delete'])) {
 										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
+											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>&uid=2" ><i class="dw dw-edit2"></i> Edit</a>
 											<a class="dropdown-item" href="termin_penanganan.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
 										</div>
 									</div>

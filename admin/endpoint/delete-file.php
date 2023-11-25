@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     $fileName = $stmtGetFileName->fetchColumn();
 
 
-    $uploadDirectory = "../file-uploads/";
+    $uploadDirectory = "../../file-uploads/";
     $filePath = $uploadDirectory . $fileName;
     
     if (file_exists($filePath) && unlink($filePath)) {
