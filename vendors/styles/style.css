@@ -3952,27 +3952,12 @@ body.IE .register-page-wrap .container {
     opacity: 0.6;
     visibility: visible;
   }
-@media (min-width: 1301px) and (max-width: 1400px) {
-  .header {
-    width: calc(100% - 250px);
-  }
-  .logout {
-    margin-top: 100px;
-  }
-  .brand-logo,
-  .left-side-bar {
-    width: 250px;
-  }
-  .main-container {
-    padding-left: 270px;
-  }
+@media (min-width: 1001px) and (max-width: 1400px) {
+  
 }
 @media (min-width: 1200px) and (max-width: 1400px) {
   .device-usage-chart .width-50-p {
     width: 100%;
-  }
-  .logout {
-    margin-top:200px;
   }
 }
 @media (max-width: 1300px) {

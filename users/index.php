@@ -46,6 +46,52 @@
 
 				<div class="card-box mb-30">
 					<div class="pd-20">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="materi.php" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> See all</a>
+						<h2 class="text-blue h4">MATERI</h2>
+					</div>
+					<div class="pb-20">
+						<div class="row">
+							<?php
+							$query = mysqli_query($conn, "SELECT * FROM tbl_file ORDER BY date_uploaded DESC limit 4") or die(mysqli_error());
+							$count = mysqli_num_rows($query);
+
+							for ($i = 1; $i <= $count; $i++) {
+								$row = mysqli_fetch_array($query);
+								$id = $row['id'];
+							?>
+								<div class="col-lg-3 col-md-6 mb-20 pd-30">
+									<div class="card-box height-50-p pd-20 min-height-150px">
+										<div class="d-flex justify-content-between pb-10">
+											<div class="h5 mb-0">Materi <?php echo $i; ?></div>
+											<div class="table-actions">
+												<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>
+											</div>
+										</div>
+										<div class="user-list">
+											<ul>
+												<li class="d-flex align-items-center justify-content-between">
+													<div class="name-avatar d-flex align-items-center pr-2">
+														<div class="avatar mr-2 flex-shrink-0">
+															<img src="../src/images/Notes-bro.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+														</div>
+														<div class="txt">
+															<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
+															<div class="font-14 weight-600"><?php echo $row['title']; ?></div>
+															<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
+														</div>
+													</div>
+													<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['file_uploader']; ?></div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="card-box mb-30">
+					<div class="pd-20">
 						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="kuis.php?q=1" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> Yuk Kuis</a>
 						<h2 class="text-blue h4">HISTORI KUIS</h2>
 					</div>

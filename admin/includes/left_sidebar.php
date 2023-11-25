@@ -45,8 +45,12 @@
 							<li><a href="histori.php">Histori Kuis</a></li>
 						</ul>
 					</li>
+				</ul>
+			</div>
+			<div class="sidebar-menu">
+				<ul id="accordion-menu">
 					<li class="dropdown">
-						<a href="../logout.php" class="logout dropdown-toggle no-arrow" style="margin-top:450px; background-color:#ffff; color:black; border-radius: 30px;">
+						<a href="../logout.php" class="dropdown-toggle no-arrow" style="margin-top:100px; background-color:#ffff; color:black; border-radius: 30px;">
 							<span class="micon dw dw-logout" style="color:black;"></span><span class="mtext">Log Out</span>
 						</a>
 					</li>

@@ -46,118 +46,44 @@
 							<h2 class="text-blue h4">SEMUA MATERI</h2>
 						</div>
 						<div class="pb-20">
-							<div class="modal fade" id="addFileModal" tabindex="-1" aria-labelledby="addFile" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="addFile">Add file</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form action="./endpoint/add-file.php" method="POST" enctype="multipart/form-data">
-												<div class="form-group">
-													<label for="fileTitle">File Title</label>
-													<input type="text" class="form-control" id="fileTitle" name="fileTitle" required>
-												</div>
-												<div class="form-group">
-													<label for="file">File</label>
-													<input type="file" class="form-control-file" id="file" name="file" required>
-												</div>
-												<div class="form-group">
-													<label for="fileUploader">Uploaded By (Optional)</label>
-													<input type="text" class="form-control" id="fileUploader" name="fileUploader">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary">Add File</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
+							<div class="row">
+								<?php
+								$query = mysqli_query($conn, "SELECT * FROM tbl_file ORDER BY date_uploaded DESC") or die(mysqli_error());
+								$count = mysqli_num_rows($query);
 
-							<!-- Update File Modal -->
-							<div class="modal fade" id="updateFileModal" tabindex="-1" aria-labelledby="updateFile" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="updateFile"></h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<form action="./endpoint/update-file.php" method="POST" enctype="multipart/form-data">
-												<input type="text" class="form-control" id="updateFileID" name="fileID" hidden>
-												<div class="form-group">
-													<label for="fileTitle">File Title</label>
-													<input type="text" class="form-control" id="updateFileTitle" name="fileTitle" required>
+								for ($i = 1; $i <= $count; $i++) {
+									$row = mysqli_fetch_array($query);
+									$id = $row['id'];
+								?>
+									<div class="col-lg-3 col-md-6 mb-20 pd-30">
+										<div class="card-box height-100-p pd-20 min-height-200px">
+											<div class="d-flex justify-content-between pb-10">
+												<div class="h5 mb-0">Materi <?php echo $i; ?></div>
+												<div class="table-actions">
+													<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>
 												</div>
-												<div class="form-group">
-													<label for="file">File</label>
-													<input type="file" class="form-control-file" id="updateFile" name="file" required>
-												</div>
-												<div class="form-group">
-													<label for="updateFileUploader">Uploaded By (Optional)</label>
-													<input type="text" class="form-control" id="updateFileUploader" name="fileUploader">
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary">Save Changes</button>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-								<div class="file-container">
-									<!-- Button trigger modal -->
-									
-
-									<table class="table table-hover data-table stripe  text-center" id="fileTable">
-										<thead>
-											<tr>
-												<th class="table-plus" scope="col">No</th>
-												<th scope="col">File Title</th>
-												<th scope="col">File</th>
-												<th scope="col">Uploaded By</th>
-												<th scope="col">Date</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-
-											<?php 
-												$stmt = $dbh->prepare("SELECT * FROM `tbl_file`");
-												$stmt->execute();
-												$result = $stmt->fetchAll();
-												$x=1;
-												foreach ($result as $row) {
-													$fileID = $row['tbl_file_id'];
-													$fileTitle = $row['file_title'];
-													$file = $row['file'];
-													$fileUploader = $row['file_uploader'];
-													$dateUploaded = $row['date_uploaded'];
-
-												?>
-												<tr class="table-plus">
-													<th id="fileID-<?= $fileID ?>"><?php echo $x; ?></th>
-													<td id="fileTitle-<?= $fileID ?>"><?php echo $fileTitle ?></td>
-													<td id="file-<?= $fileID ?>"><?php echo $file ?></td>
-													<td id="fileUploader-<?= $fileID ?>"><?php echo $fileUploader ?></td>
-													<td id="dateUploaded-<?= $fileID ?>"><?php echo $dateUploaded ?></td>
-													<td>
+											</div>
+											<div class="user-list">
+												<ul>
+													<li class="d-flex align-items-center justify-content-between">
+														<div class="name-avatar d-flex align-items-center pr-2">
+															<div class="avatar mr-2 flex-shrink-0">
+																<img src="../src/images/Notes-bro.svg" class="border-radius-100 box-shadow" width="70" height="70" alt="">
+															</div>
+															<div class="txt">
+																<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
+																<div class="font-18 weight-600"><?php echo $row['title']; ?></div>
+																<div class="font-14 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
+															</div>
+														</div>
 														<button type="button" class="btn btn-success"><i class="fa-solid fa-download" onclick="downloadFile(<?php echo $fileID ?>)" title="Download"></i></button>
-													</td>
-												<?php 
-												$x++;}
-											?>
-										</tbody>
-									</table>
-								</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								<?php } ?>
+							</div>
 						</div>
 					</div>
 				</div>
