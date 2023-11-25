@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-lg-4 col-md-6 mb-20">
+				<div class="col-lg-3 col-md-5 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between pb-10">
 							<div class="h5 mb-0">Pengguna Terdaftar</div>
@@ -80,7 +80,42 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 mb-20">
+				<div class="col-lg-3 col-md-5 mb-20">
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between">
+							<div class="h5 mb-0">Total Soal</div>
+							<div class="table-actions">
+								<a title="VIEW" href="list_kuis.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+							</div>
+						</div>
+						<div class="user-list">
+							<ul>
+								<?php
+		                         $query = mysqli_query($conn,"SELECT * FROM tbl_file ORDER BY date_uploaded DESC limit 4") or die(mysqli_error());
+								 $x = 1;
+		                         while ($row = mysqli_fetch_array($query)) {
+		                             ?>
+
+								<li class="d-flex align-items-center justify-content-between">
+									<div class="name-avatar d-flex align-items-center pr-2">
+										<div class="avatar mr-2 flex-shrink-0">
+											<img src="../src/images/file-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+										</div>
+										<div class="txt">
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
+											<div class="font-14 weight-600"><?php echo $row['title']; ?></div>
+											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
+										</div>
+									</div>
+									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['file_uploader']; ?></div>
+								</li>
+								<?php $x++;}?>
+							</ul>
+						</div>
+						<div id="application-chart"></div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-5 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
 							<div class="h5 mb-0">Total Soal</div>
@@ -115,7 +150,7 @@
 						<div id="application-chart"></div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-6 mb-20">
+				<div class="col-lg-3 col-md-5 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
 							<div class="h5 mb-0">History</div>
