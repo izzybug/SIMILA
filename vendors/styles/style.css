@@ -1505,7 +1505,7 @@ table.dataTable.dtr-inline.collapsed
 }
 .brand-logo {
   width: 280px;
-  height: 70px;
+  height: 100px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .brand-logo a {
@@ -1581,11 +1581,11 @@ table.dataTable.dtr-inline.collapsed
   cursor: pointer;
   position: absolute;
   right: -13px;
-  top: 20px;
+  top: 35px;
   display: none;
 }
 .sidebar-menu {
-  padding: 0 10px 30px 10px;
+  padding: 0 10px 20px 10px;
 }
 .sidebar-menu .dropdown-toggle {
   display: block;
@@ -3956,6 +3956,9 @@ body.IE .register-page-wrap .container {
   .header {
     width: calc(100% - 250px);
   }
+  .logout {
+    margin-top: 100px;
+  }
   .brand-logo,
   .left-side-bar {
     width: 250px;
@@ -3968,9 +3971,14 @@ body.IE .register-page-wrap .container {
   .device-usage-chart .width-50-p {
     width: 100%;
   }
+  .logout {
+    margin-top:200px;
+  }
 }
 @media (max-width: 1300px) {
-  
+  .logout {
+    margin-top: 100px;
+  }
   .header-right .brand-logo {
     display: table;
   }
@@ -3996,8 +4004,14 @@ body.IE .register-page-wrap .container {
   .header-left .header-search {
     display: block !important;
   }
+  .logout {
+    margin-top: 100px;
+  }
 }
 @media (max-width: 1024px) {
+  .logout {
+    margin-top: 100px;
+  }
   .header {
     position: relative;
   }
@@ -4034,9 +4048,14 @@ body.IE .register-page-wrap .container {
   .device-usage-chart .width-50-p {
     width: 100%;
   }
+  .logout {
+    margin-top: 100px;
+  }
 }
 @media (max-width: 767px) {
-  .header {
+  .logout {
+    margin-top: 100px;
+  }.header {
     position: fixed;
     left: 0;
     top: 0;
@@ -4135,7 +4154,9 @@ body.IE .register-page-wrap .container {
   }
 }
 @media (max-width: 660px) {
-  .docs-buttons .btn-group-crop {
+  .logout {
+    margin-top: 100px;
+  }.docs-buttons .btn-group-crop {
     display: block;
   }
   .select-role .btn-group .btn {

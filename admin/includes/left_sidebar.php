@@ -5,7 +5,7 @@
 				<img src="../src/images/loader_logo/simila-white.png" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
-				<i class="ion-close-round"></i>
+				<i class="fa-solid fa-circle-chevron-left fa-2xl" style="color: #fffff;"></i>
 			</div>
 		</div>
 		<div class="menu-block customscroll">
@@ -44,6 +44,11 @@
 							<li><a href="users.php">Manage Users</a></li>
 							<li><a href="histori.php">Histori Kuis</a></li>
 						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="../logout.php" class="logout dropdown-toggle no-arrow" style="margin-top:450px; background-color:#ffff; color:black; border-radius: 30px;">
+							<span class="micon dw dw-logout" style="color:black;"></span><span class="mtext">Log Out</span>
+						</a>
 					</li>
 				</ul>
 			</div>
