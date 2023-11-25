@@ -127,10 +127,10 @@
 						<div class="user-list">
 						<ul>
 								<?php
-		                         $query = mysqli_query($conn, "SELECT users_kuis.username ,quiz.title, history.score 
-								 FROM history 
-								 JOIN quiz ON history.eid = quiz.eid 
-								 JOIN users_kuis ON history.eid = users_kuis.eid
+		                         $query = mysqli_query($conn, "SELECT users_kuis.username, quiz.title, history.score 
+								 FROM history
+								 JOIN quiz ON history.eid = quiz.eid
+								 JOIN users_kuis ON history.id_users = users_kuis.id
 								 ORDER BY history.date DESC 
 								 LIMIT 4") or die('Error');
 								 $x = 1;

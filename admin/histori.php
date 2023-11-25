@@ -65,13 +65,12 @@
 									<tbody>
 										<tr>
 											<?php
-												$tampil = mysqli_query($conn, "SELECT users_kuis.username ,quiz.title, history.level, history.sahi, history.wrong, history.score 
-												FROM history 
-												JOIN quiz ON history.eid = quiz.eid 
-												JOIN users_kuis ON history.eid = users_kuis.eid
-												WHERE history.id_users = users_kuis.id
+												$tampil = mysqli_query($conn, "SELECT users_kuis.username, quiz.title, history.level, history.sahi, history.wrong, history.score 
+												FROM history
+												JOIN quiz ON history.eid = quiz.eid
+												JOIN users_kuis ON history.id_users = users_kuis.id
 												ORDER BY history.date DESC") or die('Error');
-				
+												
 												$x = 1;
 												while ($row = mysqli_fetch_array($tampil)) {
 												?>  

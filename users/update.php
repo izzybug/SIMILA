@@ -92,7 +92,7 @@
       $q = mysqli_query($conn, "INSERT INTO users_kuis (`username`, `eid`) VALUES ('$username', '$eid')");
       $q=mysqli_query($conn,"SELECT * FROM users_kuis WHERE username='$username'" );
       $row=mysqli_fetch_array($q);
-      $usr=$row['username'];
+      $usr=$row['id'];
       header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total&usr=$usr");
   }
 
@@ -118,7 +118,7 @@
       {
         $q=mysqli_query($conn,"INSERT INTO `history` (`id_users`,`email`, `eid`, `score`, `level`, `sahi`, `wrong`) VALUES('$usr','$email','$eid' ,'0','0','0','0')")or die('Error');
       }
-      $q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND email='$email' ")or die('Error115');
+      $q=mysqli_query($conn,"SELECT * FROM `history` WHERE eid='$eid' AND id_users='$usr' ")or die('Error115');
       while($row=mysqli_fetch_array($q) )
       {
         $s=$row['score'];
@@ -126,7 +126,7 @@
       }
       $r++;
       $s=$s+$sahi;
-      $q=mysqli_query($conn,"UPDATE `history` SET `score`=$s,`level`=$sn,`sahi`=$r, date= NOW()  WHERE  email = '$email' AND eid = '$eid'")or die('Error124');
+      $q=mysqli_query($conn,"UPDATE `history` SET `score`=$s,`level`=$sn,`sahi`=$r, date= NOW()  WHERE  id_users = '$usr'")or die('Error124');
     } 
     else
     {
@@ -147,16 +147,20 @@
       }
       $w++;
       $s=$s-$wrong;
-      $q=mysqli_query($conn,"UPDATE `history` SET `score`=$s,`level`=$sn,`wrong`=$w, date=NOW() WHERE  email = '$email' AND eid = '$eid'")or die('Error147');
+      $q=mysqli_query($conn,"UPDATE `history` SET `score`=$s,`level`=$sn,`wrong`=$w, date=NOW() WHERE  id_users = '$usr'")or die('Error147');
     }
     if($sn != $total)
     {
       $sn++;
-      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=$sn&t=$total")or die('Error152');
+      header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=$sn&t=$total&usr=$usr")or die('Error152');
     }
     else
     {
-      header("location:mulai_kuis.php?q=result&eid=$eid&usr=$usr");
+      $q=mysqli_query($conn,"SELECT * FROM history WHERE id_users='$usr'" );
+      $row = mysqli_fetch_array($q);
+      $id=$row['id'];
+      $user=$row['id_users'];
+      header("location:mulai_kuis.php?q=result&eid=$eid&usr=$user&id=$id");
     }
   }
 ?>

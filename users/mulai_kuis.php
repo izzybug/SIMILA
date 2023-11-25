@@ -86,10 +86,10 @@
 								$sn=@$_GET['n'];
 								$total=@$_GET['t'];
 								$usr=@$_GET['usr'];
-								$user=mysqli_query($conn,"SELECT * FROM users_kuis WHERE username='$usr'" )or die('Error');
+								$user=mysqli_query($conn,"SELECT * FROM users_kuis WHERE id='$usr'" )or die('Error');
 								$q=mysqli_query($conn,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
 								$row = mysqli_fetch_array($user);
-								$usr = $row['id'];
+								$usr_id = $row['id'];
 								echo '<div class="panel" style="margin:5%">';
 								while($row=mysqli_fetch_array($q) )
 								{
@@ -98,7 +98,7 @@
 									echo '<b>Pertanyaan &nbsp;'.$sn.'&nbsp;::<br /><br />'.$qns.'</b><br /><br />';
 								}
 								$q=mysqli_query($conn,"SELECT * FROM options WHERE qid='$qid' " );
-								echo '<form action="update.php?q=quiz&step=3&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'&usr='.$usr.'" method="POST"  class="form-horizontal">
+								echo '<form action="update.php?q=quiz&step=3&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'&usr='.$usr_id.'" method="POST"  class="form-horizontal">
 								<br />';
 
 								while($row=mysqli_fetch_array($q) )
@@ -110,34 +110,39 @@
 								echo'<br /><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Submit</button></form></div>';
 							}
 
-							if(@$_GET['q']== 'result' && @$_GET['eid']) 
-							{
-								$eid=@$_GET['eid'];
-								$usr=@$_GET['usr'];
-								$q=mysqli_query($conn,"SELECT * FROM `history` WHERE id_users='$usr' " )or die('Error157');
-								echo  '<div class="panel">
-								<center><h1 class="title" style="color:#660033">Hasil</h1><center><br /><table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
+							if(@$_GET['q']== 'result' && @$_GET['id']) {
+								$usr = $_GET['usr'];
+								$id = $_GET['id'];
+							
+								$q = mysqli_query($conn, "SELECT * FROM `history` WHERE id_users='$usr' AND id='$id'") or die('Error157');
 
-								while($row=mysqli_fetch_array($q) )
-								{
-									$s=$row['score'];
-									$w=$row['wrong'];
-									$r=$row['sahi'];
-									$qa=$row['level'];
+								echo '<div class="panel">
+										<center><h1 class="title" style="color:#660033">Hasil</h1></center><br />
+										<table class="table table-striped title1" style="font-size:20px;font-weight:1000;">';
+
+								// Check if there are any rows
+								if (mysqli_num_rows($q) > 0) {
+									// Fetch the first row (assuming there's only one row due to the WHERE condition)
+									$row = mysqli_fetch_array($q);
+
+									$s = $row['score'];
+									$w = $row['wrong'];
+									$r = $row['sahi'];
+									$qa = $row['level'];
+
 									echo '<tr style="color:black"><td>Total Pertanyaan</td><td>'.$qa.'</td></tr>
 										<tr style="color:#99cc32"><td>Jawaban Benar&nbsp;<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span></td><td>'.$r.'</td></tr> 
 										<tr style="color:red"><td>Jawaban Salah&nbsp;<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></td><td>'.$w.'</td></tr>
-										<tr style="color:black"><td>Skor&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr> ';
+										<tr style="color:black"><td>Skor&nbsp;<span class="glyphicon glyphicon-star" aria-hidden="true"></span></td><td>'.$s.'</td></tr>';
+								} else {
+									// Handle the case when there are no rows
+									echo '<tr><td colspan="2">No results found</td></tr>';
 								}
-								$q=mysqli_query($conn,"SELECT * FROM rank WHERE  email='$email' " )or die('Error157');
-								while($row=mysqli_fetch_array($q) )
-								{
-									$s=$row['score'];
-									
-								}
+
 								echo '</table></div>';
-								echo'<div class="pd-20"><a class="btn btn-primary" href="kuis.php?q=1" > Back</a></div>';
-							}
+
+								echo '<div class="pd-20"><a class="btn btn-primary" href="histori.php">Back</a></div>';
+							}							
 						?>
 					</div>
 				</div>

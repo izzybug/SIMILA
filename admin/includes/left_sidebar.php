@@ -23,13 +23,17 @@
 						</a>
 					</li>
 					<li class="dropdown">
-						<a href="termin.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-apartment"></span><span class="mtext"> Terminologi </span>
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-library"></span><span class="mtext">Terminologi</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="termin.php">Istilah Medis </a></li>
+							<li><a href="termin_penanganan.php">Penanganan Medis</a></li>
+						</ul>
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Maintenance</span>
+							<span class="micon dw dw-settings2"></span><span class="mtext">Maintenance</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="users.php">Manage Users</a></li>
