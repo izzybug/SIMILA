@@ -225,7 +225,6 @@
 		</div>
 	</div>
 	<!-- js -->
-
 	<?php include('includes/scripts.php')?>
 </body>
 </html>
