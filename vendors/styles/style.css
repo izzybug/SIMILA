@@ -3961,9 +3961,6 @@ body.IE .register-page-wrap .container {
   }
 }
 @media (max-width: 1300px) {
-  .logout {
-    margin-top: 100px;
-  }
   .header-right .brand-logo {
     display: table;
   }
@@ -3989,14 +3986,8 @@ body.IE .register-page-wrap .container {
   .header-left .header-search {
     display: block !important;
   }
-  .logout {
-    margin-top: 100px;
-  }
 }
 @media (max-width: 1024px) {
-  .logout {
-    margin-top: 100px;
-  }
   .header {
     position: relative;
   }
@@ -4033,14 +4024,9 @@ body.IE .register-page-wrap .container {
   .device-usage-chart .width-50-p {
     width: 100%;
   }
-  .logout {
-    margin-top: 100px;
-  }
 }
 @media (max-width: 767px) {
-  .logout {
-    margin-top: 100px;
-  }.header {
+  .header {
     position: fixed;
     left: 0;
     top: 0;
@@ -4139,9 +4125,7 @@ body.IE .register-page-wrap .container {
   }
 }
 @media (max-width: 660px) {
-  .logout {
-    margin-top: 100px;
-  }.docs-buttons .btn-group-crop {
+  .docs-buttons .btn-group-crop {
     display: block;
   }
   .select-role .btn-group .btn {
