@@ -3,11 +3,11 @@
 <?php
 if (isset($_GET['delete'])) {
 	$delete = $_GET['delete'];
-	$sql = "DELETE FROM daftar_istilah_medis where id = ".$delete;
+	$sql = "DELETE FROM daftar_istilah_penanganan where id = ".$delete;
 	$result = mysqli_query($conn, $sql);
 	if ($result) {
 		echo "<script>alert('Deleted Successfully');</script>";
-     	echo "<script type='text/javascript'> document.location = 'termin.php'; </script>";
+     	echo "<script type='text/javascript'> document.location = 'termin_penanganan.php'; </script>";
 	}
 }
 
@@ -54,8 +54,8 @@ if (isset($_GET['delete'])) {
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php"><i class="fa fa-print"></i> Print</a>
-						<a class="btn btn-primary float-right" href="tambahData.php">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php?id=2"><i class="fa fa-print"></i> Print</a>
+						<a class="btn btn-primary float-right" href="tambahData.php?id=2">
 							<i class="fa fa-plus"></i> Tambah Data
 						</a>
 						<h2 class="text-blue h4">Terminologis Penanganan</h2>
@@ -75,7 +75,7 @@ if (isset($_GET['delete'])) {
 							<tr>
 
 								<?php 
-								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_penanganan") or die(mysqli_error());
 								$x = 1;
 								while ($row = mysqli_fetch_array($tampil)) {
 
@@ -93,7 +93,7 @@ if (isset($_GET['delete'])) {
 										</a>
 										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
-											<a class="dropdown-item" href="termin.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
+											<a class="dropdown-item" href="termin_penanganan.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
 										</div>
 									</div>
 								</td>

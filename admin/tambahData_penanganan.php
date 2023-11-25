@@ -1,6 +1,7 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
+
 if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     $id = $_GET['id'];
 
@@ -15,16 +16,10 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 
         // Insert data into the selected table
         $insertQuery = "INSERT INTO $tableName (istilah_medis, pembentukan_istilah_medis, arti) VALUES ('$istilah_medis', '$pembentukan_istilah_medis', '$arti')";
+        mysqli_query($conn, $insertQuery) or die(mysqli_error($conn));
 
-        if (mysqli_query($conn, $insertQuery)) {
-            echo "<script>alert('Data telah tersimpan')</script>";
-
-            // Redirect based on the id value
-            $redirectPage = ($id == 1) ? 'termin.php' : 'termin_penanganan.php';
-            echo "<meta http-equiv=refresh content='1;URL=$redirectPage?id=$id'>";
-        } else {
-            echo "Error in SQL query: " . mysqli_error($conn);
-        }
+        echo "<script>alert('Data telah tersimpan')</script>";
+        echo "<meta http-equiv=refresh content=1;URL='termin.php?id=$id'>";
     }
 } else {
     echo "
@@ -36,12 +31,13 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     <body>
         <script>
             alert('Invalid request.');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/index.php';
+            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
         </script>
     </body>
     </html>";
 }
 ?>
+
 
 <body>
     <div class="pre-loader">
@@ -115,7 +111,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 												<input type="text" name="arti" class="form-control" value="<?php echo $data['arti']; ?>">
 											</div>
 											<br>
-											<input type="submit" class="btn btn-primary" name="proses">
+											<input type="submit" class="btn btn-primary" value="Simpan" name="proses">
 											<?php
 												$cancelLink = ($_GET['id'] == 1) ? 'termin.php' : 'termin_penanganan.php';
 											?>
