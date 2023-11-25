@@ -55,9 +55,6 @@ if (isset($_GET['delete'])) {
 			<div class="card-box mb-30">
 				<div class="pd-20">
 						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php"><i class="fa fa-print"></i> Print</a>
-						<a class="btn btn-primary float-right" href="tambahData.php">
-							<i class="fa fa-plus"></i> Tambah Data
-						</a>
 						<h2 class="text-blue h4">Terminologis Penanganan</h2>
 					</div>
 				<div class="pb-20">

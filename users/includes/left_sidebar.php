@@ -15,7 +15,11 @@
 						<a href="index.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
 						</a>
-						
+					</li>
+					<li class="dropdown">
+						<a href="materi.php" class="dropdown-toggle no-arrow">
+							<span class="micon dw dw-house-1"></span><span class="mtext">Materi</span>
+						</a>
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
