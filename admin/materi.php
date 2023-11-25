@@ -120,10 +120,10 @@
 									<!-- Button trigger modal -->
 									
 
-									<table class="table table-hover text-center" id="fileTable">
+									<table class="table table-hover data-table stripe  text-center" id="fileTable">
 										<thead>
 											<tr>
-												<th scope="col">File ID</th>
+												<th class="table-plus" scope="col">File ID</th>
 												<th scope="col">File Title</th>
 												<th scope="col">File</th>
 												<th scope="col">Uploaded By</th>
@@ -147,7 +147,7 @@
 
 
 												?>
-												<tr class="fileList">
+												<tr class="table-plus">
 													<th id="fileID-<?= $fileID ?>"><?php echo $fileID ?></th>
 													<td id="fileTitle-<?= $fileID ?>"><?php echo $fileTitle ?></td>
 													<td id="file-<?= $fileID ?>"><?php echo $file ?></td>
