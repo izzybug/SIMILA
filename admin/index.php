@@ -85,7 +85,7 @@
 						<div class="d-flex justify-content-between">
 							<div class="h5 mb-0">Materi</div>
 							<div class="table-actions">
-								<a title="VIEW" href="list_kuis.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+								<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
 						</div>
 						<div class="user-list">

@@ -79,36 +79,44 @@
 											}
 							?>
 						<?php
-							if(@$_GET['q']== 'quiz' && @$_GET['step']== 3) 
-							{
-								$eid=@$_GET['eid'];
-								$sn=@$_GET['n'];
-								$total=@$_GET['t'];
-								$usr=@$_GET['usr'];
-								$user=mysqli_query($conn,"SELECT * FROM users_kuis WHERE id='$usr'" )or die('Error');
-								$q=mysqli_query($conn,"SELECT * FROM questions WHERE eid='$eid' AND sn='$sn' " );
+							if(@$_GET['q'] == 'quiz' && @$_GET['step'] == 3) {
+								$eid = @$_GET['eid'];
+								$sn = @$_GET['n'];
+								$total = @$_GET['t'];
+								$usr = @$_GET['usr'];
+								$user = mysqli_query($conn, "SELECT * FROM users_kuis WHERE id='$usr'") or die('Error');
+								$q = mysqli_query($conn, "SELECT * FROM questions WHERE eid='$eid' AND sn='$sn'");
 								$row = mysqli_fetch_array($user);
 								$usr_id = $row['id'];
-								echo '<div class="panel" style="margin:5%">';
-								while($row=mysqli_fetch_array($q) )
-								{
-									$qns=$row['qns'];
-									$qid=$row['qid'];
-									echo '<b>Pertanyaan &nbsp;'.$sn.'&nbsp;::<br /><br />'.$qns.'</b><br /><br />';
+								echo '<div class="panel" style="margin:2.5%; color:#ffff; background-color:#B33C69; box-shadow:border: 1px blur; padding: 20px 50px; border-radius:50px; box-shadow: 2px 2px 2px 2px #888888;">';
+								while($row = mysqli_fetch_array($q)) {
+									$qns = $row['qns'];
+									$qid = $row['qid'];
+									echo '<b style="font-size:30px">&nbsp;::   Pertanyaan &nbsp;' . $sn . '<br /><br />' . $qns . '</b><br /><br />';
 								}
-								$q=mysqli_query($conn,"SELECT * FROM options WHERE qid='$qid' " );
-								echo '<form action="update.php?q=quiz&step=3&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'&usr='.$usr_id.'" method="POST"  class="form-horizontal">
-								<br />';
-
-								while($row=mysqli_fetch_array($q) )
-								{
-									$option=$row['option'];
-									$optionid=$row['optionid'];
-									echo'<input type="radio" name="ans" value="'.$optionid.'">&nbsp;'.$option.'<br /><br />';
+								$q = mysqli_query($conn, "SELECT * FROM options WHERE qid='$qid'");
+								echo '<form action="update.php?q=quiz&step=3&eid='.$eid.'&n='.$sn.'&t='.$total.'&qid='.$qid.'&usr='.$usr_id.'" method="POST" class="form-horizontal">';
+								echo '<div class="table-responsive">';
+								echo '<table class="table" style="color:#ffff;">';
+								while($row = mysqli_fetch_array($q)) {
+									$option = $row['option'];
+									$optionid = $row['optionid'];
+									echo '<tr class="table-row" style="cursor: pointer;" onmouseover="this.style.backgroundColor=\'#dddd\'" onmouseout="this.style.backgroundColor=\'\'" onclick="selectRow(this)">
+										<td style="width: 10px;"><input type="radio" name="ans" value="'.$optionid.'" style="transform: scale(0.8);"></td>
+										<td>'.$option.'</td>
+										</tr>';
 								}
-								echo'<br /><button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Submit</button></form></div>';
-							}
-
+								echo '</table>';
+								echo '</div>';
+								echo '<br /><button type="submit" class="btn btn-secondary"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span>&nbsp;Submit</button></form></div>';
+								echo '<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>';
+								echo '<script>
+									function selectRow(row) {
+										$(row).find("input[type=radio]").prop("checked", true);
+									}
+								</script>';
+							}													
+							
 							if(@$_GET['q']== 'result' && @$_GET['id']) {
 								$usr = $_GET['usr'];
 								$id = $_GET['id'];
