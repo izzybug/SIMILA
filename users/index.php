@@ -46,7 +46,7 @@
 
 				<div class="card-box mb-30">
 					<div class="pd-20">
-						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="materi.php" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> See all</a>
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="materi.php" ><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See all</a>
 						<h2 class="text-blue h4">MATERI</h2>
 					</div>
 					<div class="pb-20">
