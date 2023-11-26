@@ -53,7 +53,7 @@
 
 								for ($i = 1; $i <= $count; $i++) {
 									$row = mysqli_fetch_array($query);
-									$id = $row['id'];
+									$fileID = $row['tbl_file_id'];
 								?>
 									<div class="col-lg-3 col-md-6 mb-20 pd-30">
 										<div class="card-box height-100-p pd-20 min-height-200px">
