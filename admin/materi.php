@@ -117,10 +117,7 @@
 								</div>
 							</div>
 								<div class="file-container">
-									<!-- Button trigger modal -->
-									
-
-									<table class="table table-hover data-table stripe  text-center" id="fileTable">
+									<table class="table table-hover data-table stripe text-center" id="fileTable">
 										<thead>
 											<tr>
 												<th class="table-plus" scope="col">No</th>
@@ -128,11 +125,10 @@
 												<th scope="col">File</th>
 												<th scope="col">Uploaded By</th>
 												<th scope="col">Date</th>
-												<th scope="col">Action</th>
+												<th scope="col" class="datatable-nosort">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-
 											<?php 
 												$stmt = $dbh->prepare("SELECT * FROM `tbl_file`");
 												$stmt->execute();
@@ -153,11 +149,11 @@
 													<td id="fileUploader-<?= $fileID ?>"><?php echo $fileUploader ?></td>
 													<td id="dateUploaded-<?= $fileID ?>"><?php echo $dateUploaded ?></td>
 													<td>
-														<div class="btn-group">
+														<div class="btn-group" style="margin-right:10px;">
 															<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 																Action
 															</button>
-															<div class="dropdown-menu dropdown-xl text-center" style="width: 7vw; height: 7vh; padding-top:14px">
+															<div class="dropdown-menu dropdown-xl text-center" style="width: 7vw; height: 7vh; padding-top:14px; margin-right: 40px;">
 																<button type="button" class="btn btn-success"><i class="fa-solid fa-download" onclick="downloadFile(<?php echo $fileID ?>)" title="Download"></i></button>
 																<button type="button" class="btn btn-secondary"><i class="fa-solid fa-pencil" onclick="updateFile(<?php echo $fileID ?>)" title="Update"></i></button>
 																<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" onclick="deleteFile(<?php echo $fileID ?>, )" title="Delete"></i></button>

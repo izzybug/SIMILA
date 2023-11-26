@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
             echo "
             <script>
                 alert('Error deleting file record from the database.');
-                window.location.href = 'materi.php';
+                window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
             </script>
             ";
         }
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
         echo "
         <script>
             // alert('Error deleting the file.');
-            window.location.href = 'materi.php';
+            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
         </script>
         ";
     }
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     echo "
     <script>
         alert('Invalid request.');
-        window.location.href = 'materi.php';
+        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
     </script>
     ";
 }
