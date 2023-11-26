@@ -12,7 +12,6 @@ try {
         $file_path = $fileData['file'];
         $file_name = basename($file_path);
 
-        header("Content-Type: application/octet-stream");
         header('Content-Disposition: attachment; filename="' . $file_name . '"');
 
         readfile($file_path);
