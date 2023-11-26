@@ -44,6 +44,9 @@
 			color: #fff;
 			border: #B33C69;
 		}
+		.card-box {
+            overflow: hidden;
+        }
 	</style>
 </head>
 <?php include('../includes/config.php'); ?>
