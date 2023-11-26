@@ -60,6 +60,24 @@
 		.widget-data {
 			text-align: center;
 		}
+		.card-box {
+            overflow: hidden;
+        }
+
+        .materi-list {
+            padding: 10px 0;
+        }
+
+        .materi-list li {
+            margin-bottom: 10px;
+        }
+
+        @media screen and (min-width: 1001px) and (max-width: 1500px) {
+            .card-box {
+                min-height: 150px;
+            }
+        }
+
 	</style>
 
 </head>

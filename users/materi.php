@@ -55,15 +55,15 @@
 									$row = mysqli_fetch_array($query);
 									$fileID = $row['tbl_file_id'];
 								?>
-									<div class="col-lg-3 col-md-6 mb-20 pd-30">
-										<div class="card-box height-100-p pd-20 min-height-200px">
+									<div class="col-lg-3 col-md-6 col-sm-12 mb-20 pd-30">
+										<div class="card-box height-70-p pd-20 min-height-150px">
 											<div class="d-flex justify-content-between pb-10">
 												<div class="h5 mb-0">Materi <?php echo $i; ?></div>
 												<div class="table-actions">
 													<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>
 												</div>
 											</div>
-											<div class="user-list">
+											<div class="materi-list">
 												<ul>
 													<li class="d-flex align-items-center justify-content-between">
 														<div class="name-avatar d-flex align-items-center pr-2">
@@ -76,8 +76,9 @@
 																<div class="font-14 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
 															</div>
 														</div>
-														<button type="button" class="btn btn-success"><i class="fa-solid fa-download" onclick="downloadFile(<?php echo $fileID ?>)" title="Download"></i></button>
 													</li>
+													<br>
+													<button type="button" class="btn btn-success"><i class="fa-solid fa-download" onclick="downloadFile(<?php echo $fileID ?>)" title="Download"></i></button>
 												</ul>
 											</div>
 										</div>
