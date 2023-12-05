@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
                     echo "
                     <script>
                         alert('File deleted successfully!');
-                        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+                        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
                     </script>
                     ";
                     exit;
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
         echo "
         <script>
             alert('" . $e->getMessage() . "');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
         </script>
         ";
     }
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
     echo "
     <script>
         alert('Invalid request.');
-        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
     </script>
     ";
 }
