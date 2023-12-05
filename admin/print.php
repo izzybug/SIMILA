@@ -50,6 +50,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
                     <th>Istilah Medis</th>
                     <th>Pembentukan Istilan Medis</th>
                     <th>Arti</th>
+                    <th>Kode ICD</th>
                 </tr>";
 
         $no = 1;
@@ -60,6 +61,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
                 <td>{$data['istilah_medis']}</td>
                 <td>{$data['pembentukan_istilah_medis']}</td>
                 <td>{$data['arti']}</td>
+                <td>{$data['kode_icd']}</td>
             </tr>";
             $no++;
         }

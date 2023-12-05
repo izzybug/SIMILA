@@ -12,9 +12,10 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
         $istilah_medis = mysqli_real_escape_string($conn, $_POST['istilah_medis']);
         $pembentukan_istilah_medis = mysqli_real_escape_string($conn, $_POST['pembentukan_istilah_medis']);
         $arti = mysqli_real_escape_string($conn, $_POST['arti']);
+        $icd = mysqli_real_escape_string($conn, $_POST['icd']);
 
         // Insert data into the selected table
-        $insertQuery = "INSERT INTO $tableName (istilah_medis, pembentukan_istilah_medis, arti) VALUES ('$istilah_medis', '$pembentukan_istilah_medis', '$arti')";
+        $insertQuery = "INSERT INTO $tableName (istilah_medis, pembentukan_istilah_medis, arti, kode_icd) VALUES ('$istilah_medis', '$pembentukan_istilah_medis', '$arti', '$icd')";
 
         if (mysqli_query($conn, $insertQuery)) {
             echo "<script>alert('Data telah tersimpan')</script>";
@@ -36,7 +37,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     <body>
         <script>
             alert('Invalid request.');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/index.php';
+            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/index.php';
         </script>
     </body>
     </html>";
@@ -113,6 +114,12 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 											<div class="">
 												<label>ARTI :</label>
 												<input type="text" name="arti" class="form-control" value="<?php echo $data['arti']; ?>">
+											</div>
+											<br>
+											<br>
+											<div class="">
+												<label>KODE ICD :</label>
+												<input type="text" name="icd" class="form-control">
 											</div>
 											<br>
 											<input type="submit" class="btn btn-primary" name="proses">

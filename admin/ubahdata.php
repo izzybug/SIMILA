@@ -1,45 +1,60 @@
 <?php include('includes/header.php')?>
 <?php include('../includes/session.php')?>
 <?php
-if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
+// Check if 'uid' and 'id' are set and have valid numeric values
+if (isset($_GET['uid']) && is_numeric($_GET['uid']) && isset($_GET['id']) && is_numeric($_GET['id'])) {
     $uid = $_GET['uid'];
     $id = $_GET['id'];
 
-	$tableName = ($uid == 1) ? "daftar_istilah_medis" : "daftar_istilah_penanganan";
+    // Define the table name based on the uid parameter
+    $tableName = ($uid == 1) ? "daftar_istilah_medis" : "daftar_istilah_penanganan";
 
-    $result = mysqli_query($conn, "SELECT * FROM $tableName WHERE id = $id");
-    $data = mysqli_fetch_array($result);
+    // Check if the connection object ($conn) is available
+    // This assumes $conn is defined somewhere in your code; make sure it is created before this point
+    if (isset($conn)) {
+        // Use prepared statement to fetch data
+        $selectQuery = "SELECT * FROM $tableName WHERE id = ?";
+        $stmtSelect = mysqli_prepare($conn, $selectQuery);
+        mysqli_stmt_bind_param($stmtSelect, "i", $id);
+        mysqli_stmt_execute($stmtSelect);
+        $result = mysqli_stmt_get_result($stmtSelect);
+        $data = mysqli_fetch_array($result);
 
-    if ($data) {
-        if (isset($_POST['proses'])) {
-            // Sanitize input data
-            $istilah_medis = mysqli_real_escape_string($conn, $_POST['istilah_medis']);
-            $pembentukan_istilah_medis = mysqli_real_escape_string($conn, $_POST['pembentukan_istilah_medis']);
-            $arti = mysqli_real_escape_string($conn, $_POST['arti']);
+        if ($data) {
+            if (isset($_POST['proses'])) {
+                // Sanitize input data
+                $istilah_medis = mysqli_real_escape_string($conn, $_POST['istilah_medis']);
+                $pembentukan_istilah_medis = mysqli_real_escape_string($conn, $_POST['pembentukan_istilah_medis']);
+                $arti = mysqli_real_escape_string($conn, $_POST['arti']);
+                $icd = mysqli_real_escape_string($conn, $_POST['icd']);
 
-            // Use prepared statement to update data
-            $updateQuery = "UPDATE $tableName SET istilah_medis=?, pembentukan_istilah_medis=?, arti=? WHERE id=?";
-            $stmt = mysqli_prepare($conn, $updateQuery);
-            mysqli_stmt_bind_param($stmt, "sssi", $istilah_medis, $pembentukan_istilah_medis, $arti, $id);
-            
-            if (mysqli_stmt_execute($stmt)) {
-                echo "<script>alert('Data telah diubah')</script>";
-                $redirectPage = ($uid == 1) ? 'termin.php' : 'termin_penanganan.php';
-            	echo "<meta http-equiv=refresh content='1;URL=$redirectPage?id=$id'>";
-            } else {
-                echo "Error updating data: " . mysqli_error($conn);
+                // Use prepared statement to update data
+                $updateQuery = "UPDATE $tableName SET istilah_medis=?, pembentukan_istilah_medis=?, arti=?, kode_icd=? WHERE id=?";
+                $stmtUpdate = mysqli_prepare($conn, $updateQuery);
+                mysqli_stmt_bind_param($stmtUpdate, "ssssi", $istilah_medis, $pembentukan_istilah_medis, $arti, $icd, $id);
+
+                if (mysqli_stmt_execute($stmtUpdate)) {
+                    echo "<script>alert('Data telah diubah')</script>";
+                    $redirectPage = ($uid == 1) ? 'termin.php' : 'termin_penanganan.php';
+                    echo "<meta http-equiv=refresh content='1;URL=$redirectPage?id=$id'>";
+                } else {
+                    echo "Error updating data: " . mysqli_error($conn);
+                }
+
+                mysqli_stmt_close($stmtUpdate);
             }
-
-            mysqli_stmt_close($stmt);
+        } else {
+            echo "Invalid ID.";
         }
+
+        mysqli_stmt_close($stmtSelect);
     } else {
-        echo "Invalid ID.";
+        echo "Connection object not found.";
     }
 } else {
     echo "Invalid request.";
 }
 ?>
-
 
 <body>
     <div class="pre-loader">
@@ -92,7 +107,6 @@ if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
 						</div>
 					</div>
 					<div class="wizard-content">
-					<form method="post" action="">
 							<section>
 								<div class="row">
 									<div class="col-md-12">
@@ -113,6 +127,12 @@ if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
 												<input type="text" name="arti" class="form-control" value="<?php echo $data['arti']; ?>">
 											</div>
 											<br>
+											<br><br>
+											<div class="">
+												<label>KODE ICD :</label>
+												<input type="text" name="icd" class="form-control" value="<?php echo $data['kode_icd']; ?>">
+											</div>
+											<br>
 											<input type="submit" class="btn btn-primary" name="proses">
 											<?php
 												$cancelLink = ($_GET['uid'] == 1) ? 'termin.php' : 'termin_penanganan.php';
@@ -122,7 +142,6 @@ if (isset($_GET['uid']) && is_numeric($_GET['uid'])) {
 									</div>
 								</div>
 							</section>
-						</form>
 					</div>
 				</div>
 
