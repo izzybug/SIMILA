@@ -19,7 +19,7 @@
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-settings2"></span><span class="mtext">Kuis</span>
+							<span class="micon dw dw-pencil"></span><span class="mtext">Kuis</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="list_kuis.php">List Kuis</a></li>
@@ -38,14 +38,6 @@
 						<ul class="submenu">
 							<li><a href="termin.php">Gangguan Kesehatan</a></li>
 							<li><a href="termin_penanganan.php">Tindakan Medis</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-settings2"></span><span class="mtext">Maintenance</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="users.php">Pengguna</a></li>
 						</ul>
 					</li>
 				</ul>

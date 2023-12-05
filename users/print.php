@@ -84,7 +84,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     <body>
         <script>
             alert('Invalid request.');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
         </script>
     </body>
     </html>";

@@ -58,7 +58,7 @@ if (isset($_GET['delete'])) {
 						<a class="btn btn-primary float-right" href="tambahData.php?id=2">
 							<i class="fa fa-plus"></i> Tambah Data
 						</a>
-						<h2 class="text-blue h4">Terminologis Penanganan</h2>
+						<h2 class="text-blue h4">Terminologi Penanganan</h2>
 					</div>
 				<div class="pb-20">
 					<table class="data-table table-bordered table stripe hover ">
@@ -68,6 +68,7 @@ if (isset($_GET['delete'])) {
 								<th>Istilah medis</th>
 								<th>Pembentukan Istilah Medis</th>
 								<th class="datatable-nosort">Arti</th>
+								<th class="col-1">Kode ICD</th>
 								<th class="datatable-nosort">Opsi</th>
 							</tr>
 						</thead>
@@ -87,6 +88,7 @@ if (isset($_GET['delete'])) {
 								<td><?php echo $row['istilah_medis']; ?></td>
 	                            <td><?php echo $row['pembentukan_istilah_medis']; ?></td>
 								<td><?php echo $row['arti'];?></td>
+								<td><?php echo $row['kode_ICD'];?></td>
 								<td>
 									<div class="dropdown">
 										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>

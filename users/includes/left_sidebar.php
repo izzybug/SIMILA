@@ -27,7 +27,7 @@
 							<span class="micon dw dw-book"></span><span class="mtext">Terminologi Medis</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="termin.php">Gagguan Medis</a></li>
+							<li><a href="termin.php">Gangguan Medis</a></li>
 							<li><a href="termin_penanganan.php">Tindakan Medis</a></li>
 						</ul>
 					</li>

@@ -93,7 +93,7 @@
 				<div class="card-box mb-30">
 					<div class="pd-20">
 						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="kuis.php?q=1" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> Yuk Kuis</a>
-						<h2 class="text-blue h4">HISTORI KUIS</h2>
+						<h2 class="text-blue h4">RIWAYAT PENGERJAAN</h2>
 					</div>
 					<div class="pb-20">
 						<table class="data-table table stripe hover nowrap">
@@ -141,7 +141,7 @@
 				<div class="card-box mb-30">
 					<div class="pd-20">
 							<a class="btn btn-primary float-right" style="margin-left: 10px;" href="termin.php"><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See All</a>
-							<h2 class="text-blue h4">Terminologis Kehamilan</h2>
+							<h2 class="text-blue h4">TERMINOLOGI MEDIS</h2>
 						</div>
 					<div class="pb-20">
 						<table class="data-table table-bordered table stripe hover ">

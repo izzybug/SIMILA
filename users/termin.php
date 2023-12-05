@@ -43,7 +43,7 @@
 			<div class="card-box mb-30">
 				<div class="pd-20">
 						<a class="btn btn-primary float-right" href="print.php"> <i class="fa fa-print"></i>Print</a>
-						<h2 class="text-blue h4">Terminologis Kehamilan</h2>
+						<h2 class="text-blue h4">Terminologi Kehamilan</h2>
 					</div>
 				<div class="pb-20">
 					<table class="data-table table-bordered table stripe hover ">
@@ -51,8 +51,10 @@
 							<tr>
 								<th class="table-plus">No</th>
 								<th>Istilah medis</th>
-								<th>Pembentukan Istilah Medis</th>
+								<th class="datatable-nosort">Pembentukan Istilah Medis</th>
 								<th class="datatable-nosort">Arti</th>
+								<th class=" col-1">Kode ICD</th>
+								<th class="datatable-nosort">Opsi</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,9 +71,19 @@
 									<?php echo $x; ?>
 								</td>
 								<td><?php echo $row['istilah_medis']; ?></td>
-	                            <td><?php echo $row['pembentukan_istilah_medis']; ?></td>
+	                            <td><?php echo $row['pembentukan_istilah_medis'];?></td>
 								<td><?php echo $row['arti'];?></td>
-								
+	                            <td><?php echo $row['kode_icd']; ?></td>
+								<td>
+									<div class="dropdown">
+										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
+										</a>
+										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>&uid=1" ><i class="dw dw-edit2"></i> Edit</a>
+											<a class="dropdown-item" href="termin.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
+										</div>
+									</div>
+								</td>
 							</tr>
 							<?php $x++;}?>
 						</tbody>
