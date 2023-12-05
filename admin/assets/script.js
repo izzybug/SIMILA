@@ -30,11 +30,35 @@ function deleteFile(id) {
 function downloadFile(fileID) {
     let downloadUrl = `./endpoint/download-file.php?fileID=${fileID}`;
 
-    let downloadLink = document.createElement('a');
-    downloadLink.href = downloadUrl;
-    downloadLink.download = 'filename.ext';
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-}
+    fetch(downloadUrl)
+        .then(response => response.blob())
+        .then(blob => {
+            // Create a temporary link element
+            let downloadLink = document.createElement('a');
+            downloadLink.href = window.URL.createObjectURL(blob);
 
+            // Extract file name from the response headers
+            let contentDisposition = response.headers.get('content-disposition');
+            
+            if (contentDisposition) {
+                let match = contentDisposition.match(/filename="(.+)"/);
+                if (match) {
+                    let fileName = match[1];
+
+                    downloadLink.download = fileName;
+
+                    // Append the link to the document and trigger the click event
+                    document.body.appendChild(downloadLink);
+                    downloadLink.click();
+
+                    // Clean up
+                    document.body.removeChild(downloadLink);
+                } else {
+                    console.error('Unable to extract filename from response headers.');
+                }
+            } else {
+                console.error('Content-Disposition header not found in the response.');
+            }
+        })
+        .catch(error => console.error('Download error:', error));
+}

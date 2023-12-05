@@ -6,20 +6,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTitle = $_POST["fileTitle"];
         $fileUploader = isset($_POST["fileUploader"]) ? $_POST["fileUploader"] : "";
 
-        $uploadDirectory = "../../file-uploads";
+        $uploadDirectory = "../../file-uploads/";
         $uploadedFileName = $_FILES["file"]["name"];
-        $targetFilePath = $uploadDirectory . $uploadedFileName;
+        $targetFilePath = $uploadDirectory . basename($uploadedFileName);
 
         // Check if the file already exists
         if (file_exists($targetFilePath)) {
             echo "
             <script>
                 alert('A file with the same name already exists. Please choose a different name for your file.');
-                window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
             </script>";
         } else {
+            // Move the uploaded file to the specified directory
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {
-                $dateUploaded = date("Y-m-d H:i:s"); 
+                $dateUploaded = date("Y-m-d H:i:s");
 
                 $sql = "INSERT INTO tbl_file (file_title, file, file_uploader, date_uploaded) VALUES (:fileTitle, :uploadedFileName, :fileUploader, :dateUploaded)";
                 $stmt = $dbh->prepare($sql);
@@ -32,21 +33,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "
                     <script>
                         alert('File uploaded and data inserted into the database successfully!');
-                        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
                     </script>
                     ";
                 } else {
+                    // If there's an issue with inserting data into the database, delete the uploaded file
+                    unlink($targetFilePath);
+
                     echo "
                     <script>
                         alert('Error inserting data into the database.');
-                        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                        window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
                     </script>";
                 }
             } else {
                 echo "
                 <script>
                     alert('Error uploading the file.');
-                    window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                    window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
                 </script>";
             }
         }
@@ -54,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <script>
             alert('Please fill out the required fields.');
-            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
         </script>";
     }
 }

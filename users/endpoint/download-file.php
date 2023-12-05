@@ -9,16 +9,20 @@ try {
     $fileData = $stmt->fetch();
 
     if ($fileData) {
-        $file_path = $fileData['file'];
-        $file_name = basename($file_path);
+        $file_name = $fileData['file'];
+        $file_path = '../../file-uploads/' . $file_name;
 
-        header('Content-Disposition: attachment; filename="' . $file_name . '"');
-
-        readfile($file_path);
+        if (file_exists($file_path)) {
+            header('Content-Disposition: attachment; filename="' . $file_name . '"');
+            readfile($file_path);
+        } else {
+            echo 'File not found.';
+        }
     } else {
         echo 'File not found.';
     }
 } catch (PDOException $e) {
     echo 'Database Error: ' . $e->getMessage();
 }
+
 ?>
