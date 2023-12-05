@@ -34,8 +34,8 @@
 								</div>
 								<nav aria-label="breadcrumb" role="navigation">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-										<li class="breadcrumb-item active" aria-current="page">List Materi</li>
+										<li class="breadcrumb-item"><a href="index.php">Halaman Utama</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Materi</li>
 									</ol>
 								</nav>
 							</div>

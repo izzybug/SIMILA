@@ -36,7 +36,7 @@
 						?>
 
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue"><?php echo $row['username']; ?>,</div>
+							Selamat Datang <div class="weight-600 font-30 text-blue"><?php echo $row['username']; ?>,</div>
 						</h4>
 						<p class="font-18 max-width-600">Ini adalah Sistem Terminologis Kehamilan Poltekkes Tasikmalaya.</p>
 					</div>
@@ -153,9 +153,9 @@
 				<div class="col-lg-3 col-md-5 mb-20">
 					<div class="card-box height-100-p pd-20 min-height-200px">
 						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">History</div>
+							<div class="h5 mb-0">Riwayat</div>
 							<div class="table-actions">
-								<a title="VIEW" href="#"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+								<a title="VIEW" href="histori.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
 							</div>
 						</div>
 

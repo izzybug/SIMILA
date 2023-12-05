@@ -13,14 +13,18 @@
 				<ul id="accordion-menu">
 					<li class="dropdown">
 						<a href="index.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Dashboard</span>
+							<span class="micon dw dw-house-1"></span><span class="mtext">Halaman Utama</span>
 						</a>
 						
 					</li>
-					<li>
-						<a href="list_kuis.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-calendar1"></span><span class="mtext">List Kuis</span>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-settings2"></span><span class="mtext">Kuis</span>
 						</a>
+						<ul class="submenu">
+							<li><a href="list_kuis.php">List Kuis</a></li>
+							<li><a href="histori.php">Riwayat Pengerjaan</a></li>
+						</ul>
 					</li>
 					<li>
 						<a href="materi.php" class="dropdown-toggle no-arrow">
@@ -29,11 +33,11 @@
 					</li>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon dw dw-library"></span><span class="mtext">Terminologi</span>
+							<span class="micon dw dw-library"></span><span class="mtext">Terminologi Medis</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="termin.php">Istilah Medis </a></li>
-							<li><a href="termin_penanganan.php">Penanganan Medis</a></li>
+							<li><a href="termin.php">Gangguan Kesehatan</a></li>
+							<li><a href="termin_penanganan.php">Tindakan Medis</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -41,8 +45,7 @@
 							<span class="micon dw dw-settings2"></span><span class="mtext">Maintenance</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="users.php">Manage Users</a></li>
-							<li><a href="histori.php">Histori Kuis</a></li>
+							<li><a href="users.php">Pengguna</a></li>
 						</ul>
 					</li>
 				</ul>
