@@ -31,11 +31,11 @@ function downloadFile(fileID) {
     let downloadUrl = `./endpoint/download-file.php?fileID=${fileID}`;
 
     fetch(downloadUrl)
-        .then(response => response.blob())
-        .then(blob => {
-            // Create a temporary link element
-            let downloadLink = document.createElement('a');
-            downloadLink.href = window.URL.createObjectURL(blob);
+        .then(response => {
+            // Ensure the response is successful
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
 
             // Extract file name from the response headers
             let contentDisposition = response.headers.get('content-disposition');
@@ -44,6 +44,12 @@ function downloadFile(fileID) {
                 let match = contentDisposition.match(/filename="(.+)"/);
                 if (match) {
                     let fileName = match[1];
+
+                    // Create a temporary link element
+                    let downloadLink = document.createElement('a');
+                    
+                    // Use the blob directly without creating an object URL
+                    downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.headers.get('content-type') }));
 
                     downloadLink.download = fileName;
 
@@ -62,3 +68,4 @@ function downloadFile(fileID) {
         })
         .catch(error => console.error('Download error:', error));
 }
+
