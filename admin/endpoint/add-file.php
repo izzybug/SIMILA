@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileTitle = $_POST["fileTitle"];
         $fileUploader = isset($_POST["fileUploader"]) ? $_POST["fileUploader"] : "";
 
-        $uploadDirectory = "../../file-uploads/";
+        $uploadDirectory = "../../file-uploads";
         $uploadedFileName = $_FILES["file"]["name"];
         $targetFilePath = $uploadDirectory . basename($uploadedFileName);
 
