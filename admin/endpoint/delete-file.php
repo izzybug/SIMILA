@@ -22,7 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["file"])) {
         if (file_exists($filePath)) {
             if (unlink($filePath)) {
                 // File in directory deleted successfully
-
                 // Delete the file record from the database
                 $sqlDeleteFile = "DELETE FROM tbl_file WHERE tbl_file_id = :fileID";
                 $stmtDeleteFile = $dbh->prepare($sqlDeleteFile);

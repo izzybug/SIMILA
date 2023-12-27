@@ -27,45 +27,51 @@ function deleteFile(id) {
 }
 
 // Download the file
-function downloadFile(fileID) {
-    let downloadUrl = `./endpoint/download-file.php?fileID=${fileID}`;
+function downloadFile(id) {
+    let downloadUrl = './endpoint/download-file.php?fileID='+id;
 
     fetch(downloadUrl)
         .then(response => {
-            // Ensure the response is successful
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
 
             // Extract file name from the response headers
             let contentDisposition = response.headers.get('content-disposition');
-            
             if (contentDisposition) {
-                let match = contentDisposition.match(/filename="(.+)"/);
+                let match = contentDisposition.match(/filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/);
                 if (match) {
-                    let fileName = match[1];
-
-                    // Create a temporary link element
-                    let downloadLink = document.createElement('a');
-                    
-                    // Use the blob directly without creating an object URL
-                    downloadLink.href = URL.createObjectURL(new Blob([response.body], { type: response.headers.get('content-type') }));
-
-                    downloadLink.download = fileName;
-
-                    // Append the link to the document and trigger the click event
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-
-                    // Clean up
-                    document.body.removeChild(downloadLink);
+                    let fileName = match[1].replace(/['"]/g, ''); // Remove quotes if present
+                    // Continue with reading the blob
+                    return { response, fileName };
                 } else {
-                    console.error('Unable to extract filename from response headers.');
+                    throw new Error('Unable to extract filename from response headers.');
                 }
             } else {
-                console.error('Content-Disposition header not found in the response.');
+                throw new Error('Content-Disposition header not found in the response.');
             }
+        })
+        .then(({ response, fileName }) => response.blob().then(blob => ({ blob, fileName })))
+        .then(({ blob, fileName }) => {
+            // Use FileReader to read the blob as a data URL
+            const reader = new FileReader();
+            reader.onload = () => {
+                const dataUrl = reader.result;
+
+                // Create a temporary link element
+                let downloadLink = document.createElement('a');
+                downloadLink.href = dataUrl;
+                downloadLink.download = fileName;
+
+                // Append the link to the document and trigger the click event
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+
+                // Clean up
+                document.body.removeChild(downloadLink);
+            };
+
+            reader.readAsDataURL(blob);
         })
         .catch(error => console.error('Download error:', error));
 }
-

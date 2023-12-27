@@ -33,6 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (file_exists($oldFilePath)) {
                     unlink($oldFilePath);
                 }
+            }else{
+                echo "
+                <script>
+                    alert('Error deleting the file: $fileID');
+                    window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                </script>";            
             }
 
             if (move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath)) {

@@ -13,7 +13,7 @@ try {
         $file_path = '../../file-uploads/' . $file_name;
 
         if (file_exists($file_path)) {
-            header('Content-Disposition: attachment; filename="' . $file_name . '"');
+            header('Content-Disposition: attachment; filename="' . $file_name . '');
             readfile($file_path);
         } else {
             echo 'File not found.';

@@ -74,7 +74,7 @@
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary">Add File</button>
+													<button type="submit" class="btn btn-dark">Add File</button>
 												</div>
 											</form>
 										</div>
@@ -129,31 +129,31 @@
 											</tr>
 										</thead>
 										<tbody>
+
 											<?php 
 												$stmt = $dbh->prepare("SELECT * FROM `tbl_file`");
 												$stmt->execute();
 												$result = $stmt->fetchAll();
-												$x=1;
+
 												foreach ($result as $row) {
 													$fileID = $row['tbl_file_id'];
 													$fileTitle = $row['file_title'];
 													$file = $row['file'];
 													$fileUploader = $row['file_uploader'];
 													$dateUploaded = $row['date_uploaded'];
-
 												?>
-												<tr class="table-plus">
-													<th id="fileID-<?= $fileID ?>"><?php echo $x; ?></th>
+												<tr class="fileList">
+													<th id="fileID-<?= $fileID ?>"><?php echo $fileID ?></th>
 													<td id="fileTitle-<?= $fileID ?>"><?php echo $fileTitle ?></td>
 													<td id="file-<?= $fileID ?>"><?php echo $file ?></td>
 													<td id="fileUploader-<?= $fileID ?>"><?php echo $fileUploader ?></td>
 													<td id="dateUploaded-<?= $fileID ?>"><?php echo $dateUploaded ?></td>
 													<td>
-														<div class="btn-group" style="margin-right:10px;">
+														<div class="btn-group">
 															<button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
 																Action
 															</button>
-															<div class="dropdown-menu dropdown-xl text-center" style="width: 7vw; height: 7vh; padding-top:14px; margin-right: 40px;">
+															<div class="dropdown-menu dropdown-sm text-center">
 																<button type="button" class="btn btn-success"><i class="fa-solid fa-download" onclick="downloadFile(<?php echo $fileID ?>)" title="Download"></i></button>
 																<button type="button" class="btn btn-secondary"><i class="fa-solid fa-pencil" onclick="updateFile(<?php echo $fileID ?>)" title="Update"></i></button>
 																<button type="button" class="btn btn-danger"><i class="fa-solid fa-trash" onclick="deleteFile(<?php echo $fileID ?>, )" title="Delete"></i></button>
@@ -161,10 +161,11 @@
 														</div>
 														</select>
 													</td>
+												</tr>
 												<?php 
-												$x++;}
+												}
 											?>
-										</tbody>
+              						  </tbody>
 									</table>
 								</div>
 						</div>
