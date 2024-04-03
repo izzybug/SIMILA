@@ -1,8 +1,8 @@
 <div class="left-side-bar">
 		<div class="brand-logo">
 			<a href="index.php" style="padding-left: 1cm">
-				<img src="../src/images/loader_logo/simila.png" alt="" class="dark-logo">
-				<img src="../src/images/loader_logo/simila-white.png" alt="" class="light-logo">
+				<img src="src/images/loader_logo/simila.png" alt="" class="dark-logo">
+				<img src="src/images/loader_logo/simila-white.png" alt="" class="light-logo">
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="fa-solid fa-circle-chevron-left fa-2xl" style="color: #fffff;"></i>

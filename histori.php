@@ -1,9 +1,9 @@
-<?php include('includes/header.php')?>
-<?php include('../includes/session.php')?>
+<?php include('includess/header.php')?>
+<?php include('includess/session.php')?>
 <body>
 <div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class="loader-logo"><img src="src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -14,11 +14,11 @@
 		</div>
 	</div>
 
-	<?php include('includes/navbar.php')?>
+	<?php include('includess/navbar.php')?>
 
-	<?php include('includes/right_sidebar.php')?>
+	<?php include('includess/right_sidebar.php')?>
 
-	<?php include('includes/left_sidebar.php')?>
+	<?php include('includess/left_sidebar.php')?>
 
 	<div class="mobile-menu-overlay"></div>
 
@@ -92,10 +92,10 @@
 					</div>
 				</div>
 			</div>
-			<?php include('includes/footer.php'); ?>
+			<?php include('includess/footer.php'); ?>
 		</div>
 	</div>
 	<!-- js -->
-	<?php include('includes/scripts.php')?>
+	<?php include('includess/scripts.php')?>
 </body>
 </html>

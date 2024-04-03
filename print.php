@@ -1,4 +1,4 @@
-<?php include('../includes/config.php') ?>
+<?php include('includes/config.php') ?>
 
 <?php
 if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
@@ -16,7 +16,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
         <head>
             <title>Print</title>
             <!-- Custom fonts for this template-->
-            <link href='../src/fontawesome-free/css/all.min.css' rel='stylesheet' type='text/css'>
+            <link href='src/fontawesome-free/css/all.min.css' rel='stylesheet' type='text/css'>
             <style>
                 body {
                     font-family: Arial, sans-serif;
@@ -86,7 +86,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     <body>
         <script>
             alert('Invalid request.');
-            window.location.href = 'http://localhost/coding/project%20amel/admin/materi.php';
+            window.location.href = 'http://localhost/coding/project%20amel/termin.php';
         </script>
     </body>
     </html>";

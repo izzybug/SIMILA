@@ -64,12 +64,17 @@ if (isset($_GET['delete'])) {
 					<table class="data-table table-bordered table stripe hover ">
 						<thead>
 							<tr>
-								<th class="table-plus">No</th>
-								<th>Istilah medis</th>
-								<th class="datatable-nosort">Pembentukan Istilah Medis</th>
-								<th class="datatable-nosort">Arti</th>
-								<th class=" col-1">Kode ICD</th>
-								<th class="datatable-nosort">Opsi</th>
+								<th rowspan="2" class="table-plus" style="text-align: center;">No</th>
+								<th rowspan="2" style="text-align: center;">Istilah Medis</th>
+								<th colspan="3" class="datatable-nosort" style="text-align: center;">Pembentukan Istilah Medis</th>
+								<th rowspan="2" class="datatable-nosort" style="text-align: center;">Arti</th>
+								<th rowspan="2" style="text-align: center;">Kode ICD</th>
+								<th rowspan="2" class="datatable-nosort">Opsi</th>
+							</tr>
+							<tr>
+								<th style="text-align: center;">Prefix</th>
+								<th style="text-align: center;">Root</th>
+								<th style="text-align: center;">Suffix</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -86,7 +91,9 @@ if (isset($_GET['delete'])) {
 									<?php echo $x; ?>
 								</td>
 								<td><?php echo $row['istilah_medis']; ?></td>
-	                            <td><?php echo $row['pembentukan_istilah_medis'];?></td>
+	                            <td><?php echo $row['prefix'];?></td>
+	                            <td><?php echo $row['root'];?></td>
+	                            <td><?php echo $row['suffix'];?></td>
 								<td><?php echo $row['arti'];?></td>
 	                            <td><?php echo $row['kode_icd']; ?></td>
 								<td>

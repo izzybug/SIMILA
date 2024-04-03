@@ -1,0 +1,215 @@
+<?php include('includes/header.php')?>
+<?php include('../includes/session.php')?>
+<body>
+	<!-- <div class="pre-loader">
+		<div class="pre-loader-box">
+			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class='loader-progress' id="progress_div">
+				<div class='bar' id='bar1'></div>
+			</div>
+			<div class='percent' id='percent1'>0%</div>
+			<div class="loading-text">
+				Loading...
+			</div>
+		</div>
+	</div> -->
+
+	<?php include('includes/navbar.php')?>
+
+	<?php include('includes/right_sidebar.php')?>
+
+	<?php include('includes/left_sidebar.php')?>
+
+	<div class="mobile-menu-overlay"></div>
+
+	<div class="main-container">
+		<div class="pd-ltr-20">
+			<div class="card-box pd-20 height-100-p mb-30">
+				<div class="row align-items-center">
+					<div class="col-md-4 user-icon">
+						<img src="../vendors/images/undraw_hello_re_3evm.svg" alt="" style="height: 200px; width:500px">
+					</div>
+					<div class="col-md-8">
+
+						<?php $query= mysqli_query($conn,"select * from users where id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
+						?>
+
+						<h4 class="font-20 weight-500 mb-10 text-capitalize">
+							Selamat Datang <div class="weight-600 font-30 text-blue"><?php echo $row['username']; ?>,</div>
+						</h4>
+						<p class="font-18 max-width-600">Ini adalah Sistem Terminologi Kehamilan Poltekkes Tasikmalaya.</p>
+					</div>
+				</div>
+			</div>
+			<div class="title pb-20">
+				<h2 class="h3 mb-0">Data Information</h2>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-4 col-md-5 mb-20">
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between">
+							<div class="h5 mb-0">Materi</div>
+							<div class="table-actions">
+								<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+							</div>
+						</div>
+						<div class="user-list">
+							<ul>
+								<?php
+		                         $query = mysqli_query($conn,"SELECT * FROM tbl_file ORDER BY date_uploaded DESC limit 4") or die(mysqli_error());
+								 $x = 1;
+		                         while ($row = mysqli_fetch_array($query)) {
+		                             ?>
+
+								<li class="d-flex align-items-center justify-content-between">
+									<div class="name-avatar d-flex align-items-center pr-2">
+										<div class="avatar mr-2 flex-shrink-0">
+											<img src="../src/images/file-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+										</div>
+										<div class="txt">
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
+											
+											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
+										</div>
+									</div>
+									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['file_uploader']; ?></div>
+								</li>
+								<?php $x++;}?>
+							</ul>
+						</div>
+						<div id="application-chart"></div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-5 mb-20">
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between">
+							<div class="h5 mb-0">Total Soal</div>
+							<div class="table-actions">
+								<a title="VIEW" href="list_kuis.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+							</div>
+						</div>
+						<div class="user-list">
+							<ul>
+								<?php
+		                         $query = mysqli_query($conn,"SELECT * FROM quiz ORDER BY date DESC limit 4") or die(mysqli_error());
+								 $x = 1;
+		                         while ($row = mysqli_fetch_array($query)) {
+		                             ?>
+
+								<li class="d-flex align-items-center justify-content-between">
+									<div class="name-avatar d-flex align-items-center pr-2">
+										<div class="avatar mr-2 flex-shrink-0">
+											<img src="../src/images/file-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+										</div>
+										<div class="txt">
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $x; ?></span>
+											<div class="font-14 weight-600"><?php echo $row['title']; ?></div>
+											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['sahi']; ?></div>
+										</div>
+									</div>
+									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['total']; ?></div>
+								</li>
+								<?php $x++;}?>
+							</ul>
+						</div>
+						<div id="application-chart"></div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-5 mb-20">
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between">
+							<div class="h5 mb-0">Riwayat</div>
+							<div class="table-actions">
+								<a title="VIEW" href="histori.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+							</div>
+						</div>
+
+						<div class="user-list">
+						<ul>
+								<?php
+		                         $query = mysqli_query($conn, "SELECT users_kuis.username, quiz.title, history.score 
+								 FROM history
+								 JOIN quiz ON history.eid = quiz.eid
+								 JOIN users_kuis ON history.id_users = users_kuis.id
+								 ORDER BY history.date DESC 
+								 LIMIT 4") or die('Error');
+								 $x = 1;
+		                         while ($row = mysqli_fetch_array($query)) {
+		                             ?>
+
+								<li class="d-flex align-items-center justify-content-between">
+									<div class="name-avatar d-flex align-items-center pr-2">
+										<div class="avatar mr-2 flex-shrink-0">
+											<img src="../src/images/ranking-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+										</div>
+										<div class="txt">
+											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">No <?php echo $x; ?></span>
+											<div class="font-14 weight-600"><?php echo $row['username']; ?></div>
+											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['title']; ?></div>
+										</div>
+									</div>
+									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['score']; ?></div>
+								</li>
+								<?php $x++;}?>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-box mb-30">
+				<div class="pd-20">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="termin.php"><i class="icon-copy ion-eye" style="margin-right:5px;"></i> See All</a>
+						<h2 class="text-blue h4">Terminologi Kehamilan</h2>
+					</div>
+				<div class="pb-20">
+				<table class="data-table table-bordered table stripe hover ">
+						<thead>
+							<tr>
+								<th rowspan="2" class="table-plus" style="text-align: center;">No</th>
+								<th rowspan="2" style="text-align: center;">Istilah Medis</th>
+								<th colspan="3" class="datatable-nosort" style="text-align: center;">Pembentukan Istilah Medis</th>
+								<th rowspan="2" class="datatable-nosort" style="text-align: center;">Arti</th>
+								<th rowspan="2" style="text-align: center;">Kode ICD</th>
+							</tr>
+							<tr>
+								<th style="text-align: center;">Prefix</th>
+								<th style="text-align: center;">Root</th>
+								<th style="text-align: center;">Suffix</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+
+								<?php 
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
+								$x = 1;
+								while ($row = mysqli_fetch_array($tampil)) {
+
+								 ?>  
+
+								<td class="table-plus">
+									<?php echo $x; ?>
+								</td>
+								<td><?php echo $row['istilah_medis']; ?></td>
+	                            <td><?php echo $row['prefix'];?></td>
+	                            <td><?php echo $row['root'];?></td>
+	                            <td><?php echo $row['suffix'];?></td>
+								<td><?php echo $row['arti'];?></td>
+	                            <td><?php echo $row['kode_icd']; ?></td>
+							</tr>
+							<?php $x++;}?>
+						</tbody>
+					</table>
+			   </div>
+			</div>
+			<?php include('includes/footer.php'); ?>
+		</div>
+	</div>
+	<!-- js -->
+
+	<?php include('includes/scripts.php')?>
+</body>
+</html>

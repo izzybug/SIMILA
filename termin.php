@@ -1,21 +1,9 @@
-<?php include('includes/header.php')?>
-<?php include('../includes/session.php')?>
-<?php
-if (isset($_GET['delete'])) {
-	$delete = $_GET['delete'];
-	$sql = "DELETE FROM daftar_istilah_penanganan where id = ".$delete;
-	$result = mysqli_query($conn, $sql);
-	if ($result) {
-		echo "<script>alert('Deleted Successfully');</script>";
-     	echo "<script type='text/javascript'> document.location = 'termin_penanganan.php'; </script>";
-	}
-}
-
-?>
+<?php include('includess/header.php')?>
+<?php include('includess/session.php')?>
 <body>
-	<!-- <div class="pre-loader">
+	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class="loader-logo"><img src="src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -24,13 +12,13 @@ if (isset($_GET['delete'])) {
 				Loading...
 			</div>
 		</div>
-	</div> -->
+	</div>
 
-	<?php include('includes/navbar.php')?>
+	<?php include('includess/navbar.php')?>
 
-	<?php include('includes/right_sidebar.php')?>
+	<?php include('includess/right_sidebar.php')?>
 
-	<?php include('includes/left_sidebar.php')?>
+	<?php include('includess/left_sidebar.php')?>
 
 	<div class="mobile-menu-overlay"></div>
 
@@ -45,7 +33,7 @@ if (isset($_GET['delete'])) {
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Halaman Utama</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Tindakan Medis</li>
+									<li class="breadcrumb-item active" aria-current="page">Terminologi Kehamilan</li>
 								</ol>
 							</nav>
 						</div>
@@ -54,13 +42,10 @@ if (isset($_GET['delete'])) {
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php?id=2"><i class="fa fa-print"></i> Print</a>
-						<a class="btn btn-primary float-right" href="tambahData.php?id=2">
-							<i class="fa fa-plus"></i> Tambah Data
-						</a>
-						<h2 class="text-blue h4">Tindakan Medis</h2>
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php?id=1"><i class="fa fa-print"></i> Print</a>
+						<h2 class="text-blue h4">Terminologi Kehamilan</h2>
 					</div>
-					<div class="pb-20">
+				<div class="pb-20">
 					<table class="data-table table-bordered table stripe hover ">
 						<thead>
 							<tr>
@@ -69,7 +54,6 @@ if (isset($_GET['delete'])) {
 								<th colspan="3" class="datatable-nosort" style="text-align: center;">Pembentukan Istilah Medis</th>
 								<th rowspan="2" class="datatable-nosort" style="text-align: center;">Arti</th>
 								<th rowspan="2" style="text-align: center;">Kode ICD</th>
-								<th rowspan="2" class="datatable-nosort">Opsi</th>
 							</tr>
 							<tr>
 								<th style="text-align: center;">Prefix</th>
@@ -81,7 +65,7 @@ if (isset($_GET['delete'])) {
 							<tr>
 
 								<?php 
-								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_penanganan") or die(mysqli_error());
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
 								$x = 1;
 								while ($row = mysqli_fetch_array($tampil)) {
 
@@ -96,26 +80,36 @@ if (isset($_GET['delete'])) {
 	                            <td><?php echo $row['suffix'];?></td>
 								<td><?php echo $row['arti'];?></td>
 	                            <td><?php echo $row['kode_icd']; ?></td>
-								<td>
-									<div class="dropdown">
-										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>&uid=1" ><i class="dw dw-edit2"></i> Edit</a>
-											<a class="dropdown-item" href="termin.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
-										</div>
-									</div>
-								</td>
 							</tr>
 							<?php $x++;}?>
 						</tbody>
 					</table>
 			   </div>
 			</div>
-			<?php include('includes/footer.php'); ?>
+
+			<?php include('includess/footer.php'); ?>
 		</div>
 	</div>
 	<!-- js -->
-	<?php include('includes/scripts.php')?>
+
+	<script src="vendors/scripts/core.js"></script>
+	<script src="vendors/scripts/script.min.js"></script>
+	<script src="vendors/scripts/process.js"></script>
+	<script src="vendors/scripts/layout-settings.js"></script>
+	<script src="src/plugins/apexcharts/apexcharts.min.js"></script>
+	<script src="src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+
+	<!-- buttons for Export datatable -->
+	<script src="src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.print.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.html5.min.js"></script>
+	<script src="src/plugins/datatables/js/buttons.flash.min.js"></script>
+	<script src="src/plugins/datatables/js/vfs_fonts.js"></script>
+	
+	<script src="vendors/scripts/datatable-setting.js"></script>
 </body>
 </html>

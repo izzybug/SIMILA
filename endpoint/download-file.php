@@ -1,5 +1,5 @@
 <?php
-include ('../../includes/config.php');
+include ('../includes/config.php');
 
 try {
     $fileID = $_GET['fileID'];
@@ -10,9 +10,10 @@ try {
 
     if ($fileData) {
         $file_name = $fileData['file'];
-        $file_path = '../../file-uploads/' . $file_name;
+        $file_path = '../file-uploads/' . $file_name;
 
         if (file_exists($file_path)) {
+            header('Content-Type: application/octet-stream'); // Add this line
             header('Content-Disposition: attachment; filename="' . $file_name . '"');
             readfile($file_path);
         } else {

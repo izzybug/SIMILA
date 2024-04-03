@@ -10,12 +10,14 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
     if (isset($_POST['proses'])) {
         // Sanitize input data to prevent SQL injection
         $istilah_medis = mysqli_real_escape_string($conn, $_POST['istilah_medis']);
-        $pembentukan_istilah_medis = mysqli_real_escape_string($conn, $_POST['pembentukan_istilah_medis']);
+        $prefix = mysqli_real_escape_string($conn, $_POST['prefix']);
+        $root = mysqli_real_escape_string($conn, $_POST['root']);
+        $suffix = mysqli_real_escape_string($conn, $_POST['suffix']);
         $arti = mysqli_real_escape_string($conn, $_POST['arti']);
         $icd = mysqli_real_escape_string($conn, $_POST['icd']);
 
         // Insert data into the selected table
-        $insertQuery = "INSERT INTO $tableName (istilah_medis, pembentukan_istilah_medis, arti, kode_icd) VALUES ('$istilah_medis', '$pembentukan_istilah_medis', '$arti', '$icd')";
+        $insertQuery = "INSERT INTO $tableName (istilah_medis, prefix, root, suffix, arti, kode_icd) VALUES ('$istilah_medis', '$prefix', '$root', '$suffix', '$arti', '$icd')";
 
         if (mysqli_query($conn, $insertQuery)) {
             echo "<script>alert('Data telah tersimpan')</script>";
@@ -45,7 +47,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 ?>
 
 <body>
-    <div class="pre-loader">
+    <!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -56,7 +58,7 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 				Loading...
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<?php include('includes/navbar.php')?>
 
@@ -108,7 +110,26 @@ if (isset($_GET['id']) && ($_GET['id'] == 1 || $_GET['id'] == 2)) {
 											<br><br>
 											<div class="">
 												<label>PEMBENTUKAN ISTILAH MEDIS :</label>
-												<input type="text" name="pembentukan_istilah_medis" class="form-control" value="<?php echo $data['pembentukan_istilah_medis']; ?>">
+												<div class="row">
+													<div class="col-md-4 col-sm-12">
+														<div class="form-group">
+															<label>PREFIX :</label>
+															<input name="prefix" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-12">
+														<div class="form-group">
+															<label>ROOT :</label>
+															<input name="root" type="text" class="form-control wizard-required" required="true" autocomplete="off">
+														</div>
+													</div>
+													<div class="col-md-4 col-sm-12">
+														<div class="form-group">
+															<label>SUFFIX :</label>
+															<input name="suffix" type="text" class="form-control"  required="true" autocomplete="off" maxlength="20">
+														</div>
+													</div>
+												</div>
 											</div>
 											<br><br>
 											<div class="">

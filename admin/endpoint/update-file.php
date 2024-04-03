@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "
             <script>
                 alert('A file with the same name already exists. Please choose a different name for your file.');
-                window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
             </script>";
         } else {
             // Delete the old file, if it exists
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "
                 <script>
                     alert('Error deleting the file: $fileID');
-                    window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                    window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
                 </script>";            
             }
 
@@ -68,14 +68,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <script>
             alert('File updated successfully!');
-            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+            window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
         </script>
         ";
     } else {
         echo "
         <script>
             alert('Error updating file information.');
-            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+            window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
         </script>";
     }
 }

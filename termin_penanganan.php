@@ -1,5 +1,5 @@
-<?php include('includes/header.php')?>
-<?php include('../includes/session.php')?>
+<?php include('includess/header.php')?>
+<?php include('includess/session.php')?>
 <?php
 if (isset($_GET['delete'])) {
 	$delete = $_GET['delete'];
@@ -15,7 +15,7 @@ if (isset($_GET['delete'])) {
 <body>
 	<div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class="loader-logo"><img src="src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -26,11 +26,11 @@ if (isset($_GET['delete'])) {
 		</div>
 	</div>
 
-	<?php include('includes/navbar.php')?>
+	<?php include('includess/navbar.php')?>
 
-	<?php include('includes/right_sidebar.php')?>
+	<?php include('includess/right_sidebar.php')?>
 
-	<?php include('includes/left_sidebar.php')?>
+	<?php include('includess/left_sidebar.php')?>
 
 	<div class="mobile-menu-overlay"></div>
 
@@ -45,7 +45,7 @@ if (isset($_GET['delete'])) {
 							<nav aria-label="breadcrumb" role="navigation">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.php">Halaman Utama</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Terminologi Medis</li>
+									<li class="breadcrumb-item active" aria-current="page">Tindakan Medis</li>
 								</ol>
 							</nav>
 						</div>
@@ -54,8 +54,8 @@ if (isset($_GET['delete'])) {
 
 			<div class="card-box mb-30">
 				<div class="pd-20">
-						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php"><i class="fa fa-print"></i> Print</a>
-						<h2 class="text-blue h4">Terminologi Penanganan</h2>
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="print.php?id=2"><i class="fa fa-print"></i> Print</a>
+						<h2 class="text-blue h4">Tindakan Medis</h2>
 					</div>
 				<div class="pb-20">
 				<table class="data-table table-bordered table stripe hover ">
@@ -65,8 +65,8 @@ if (isset($_GET['delete'])) {
 								<th>Istilah medis</th>
 								<th>Pembentukan Istilah Medis</th>
 								<th class="datatable-nosort">Arti</th>
-								<th class="col-1">Kode ICD</th>
-								<th class="datatable-nosort">Opsi</th>
+								<th >Kode ICD</th>
+								<!-- <th class="datatable-nosort">Opsi</th> -->
 							</tr>
 						</thead>
 						<tbody>
@@ -86,7 +86,7 @@ if (isset($_GET['delete'])) {
 	                            <td><?php echo $row['pembentukan_istilah_medis']; ?></td>
 								<td><?php echo $row['arti'];?></td>
 								<td><?php echo $row['kode_ICD'];?></td>
-								<td>
+								<!-- <td>
 									<div class="dropdown">
 										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
 										</a>
@@ -95,17 +95,17 @@ if (isset($_GET['delete'])) {
 											<a class="dropdown-item" href="termin_penanganan.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
 										</div>
 									</div>
-								</td>
+								</td> -->
 							</tr>
 							<?php $x++;}?>
 						</tbody>
 					</table>
 			   </div>
 			</div>
-			<?php include('includes/footer.php'); ?>
+			<?php include('includess/footer.php'); ?>
 		</div>
 	</div>
 	<!-- js -->
-	<?php include('includes/scripts.php')?>
+	<?php include('includess/scripts.php')?>
 </body>
 </html>

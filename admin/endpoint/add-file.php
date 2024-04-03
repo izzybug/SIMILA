@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "
             <script>
                 alert('A file with the same name already exists. Please choose a different name for your file.');
-                window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
             </script>";
         } else {
             // Move the uploaded file to the specified directory
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "
                     <script>
                         alert('File uploaded and data inserted into the database successfully!');
-                        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                        window.location.href = 'admin/http://103.184.53.115:8023/simila/admin/materi.php';
                     </script>
                     ";
                 } else {
@@ -43,14 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo "
                     <script>
                         alert('Error inserting data into the database.');
-                        window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                        window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
                     </script>";
                 }
             } else {
                 echo "
                 <script>
                     alert('Error uploading the file.');
-                    window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+                    window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
                 </script>";
             }
         }
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "
         <script>
             alert('Please fill out the required fields.');
-            window.location.href = 'https://simila-9sad5.ondigitalocean.app/admin/materi.php';
+            window.location.href = 'http://103.184.53.115:8023/simila/admin/materi.php';
         </script>";
     }
 }

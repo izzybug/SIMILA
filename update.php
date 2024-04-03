@@ -1,8 +1,7 @@
 <?php
-  include('../includes/session.php');
-  include('../includes/config.php');
+  include('includes/config.php');
   
-  $email=$_SESSION['email'];
+  $email="mahasiswa@gmail.com";
 
   if(isset($_SESSION['key']))
   {
@@ -90,7 +89,7 @@
       $eid=@$_GET['eid'];
       $username=$_POST['username'];
       $q = mysqli_query($conn, "INSERT INTO users_kuis (`username`, `eid`) VALUES ('$username', '$eid')");
-      $q=mysqli_query($conn,"SELECT * FROM users_kuis WHERE username='$username'" );
+      $q = mysqli_query($conn, "SELECT * FROM users_kuis WHERE username='$username'" );
       $row=mysqli_fetch_array($q);
       $usr=$row['id'];
       header("location:mulai_kuis.php?q=quiz&step=3&eid=$eid&n=1&t=$total&usr=$usr");

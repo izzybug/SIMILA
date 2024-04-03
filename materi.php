@@ -1,10 +1,10 @@
-<?php include('includes/header.php')?>
-<?php include('../includes/session.php')?>
+<?php include('includess/header.php')?>
+<?php include('includess/session.php')?>
 
 <body>
 	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
+			<div class="loader-logo"><img src="src/images/loader_logo/simila.png" alt=""></div>
 			<div class='loader-progress' id="progress_div">
 				<div class='bar' id='bar1'></div>
 			</div>
@@ -15,11 +15,11 @@
 		</div>
 	</div> -->
 
-	<?php include('includes/navbar.php')?>
+	<?php include('includess/navbar.php')?>
 
-	<?php include('includes/right_sidebar.php')?>
+	<?php include('includess/right_sidebar.php')?>
 
-	<?php include('includes/left_sidebar.php')?>
+	<?php include('includess/left_sidebar.php')?>
 
 	<div class="mobile-menu-overlay"></div>
 
@@ -68,7 +68,7 @@
 													<li class="d-flex align-items-center justify-content-between">
 														<div class="name-avatar d-flex align-items-center pr-2">
 															<div class="avatar mr-2 flex-shrink-0">
-																<img src="../src/images/Notes-bro.svg" class="border-radius-100 box-shadow" width="70" height="70" alt="">
+																<img src="src/images/Notes-bro.svg" class="border-radius-100 box-shadow" width="70" height="70" alt="">
 															</div>
 															<div class="txt">
 																<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
@@ -88,11 +88,11 @@
 						</div>
 					</div>
 				</div>
-			<?php include('includes/footer.php'); ?>
+			<?php include('includess/footer.php'); ?>
 		</div>
 	</div>
 
-	<?php include('includes/scripts.php')?>    <!-- jQuery -->
+	<?php include('includess/scripts.php')?>    <!-- jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
     <!-- Script JS -->

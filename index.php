@@ -1,148 +1,201 @@
-<?php
-session_start();
-include('includes/config.php');
-if(isset($_POST['signin']))
-{
-	$email=$_POST['email'];
-	$password=md5($_POST['password']);
+<?php include('includess/header.php')?>
 
-	$sql ="SELECT * FROM users where email ='$email' AND password ='$password'";
-	$query= mysqli_query($conn, $sql);
-	$count = mysqli_num_rows($query);
-	if($count > 0)
-	{
-		while ($row = mysqli_fetch_assoc($query)) {
-		    if ($row['role'] == 'admin') {
-		    	$_SESSION['alogin']=$row['id'];
-				$_SESSION['email']=$row['email'];
-				$_SESSION['role'] = $row['role'];
-			 	echo "<script type='text/javascript'> document.location = 'admin/index.php'; </script>";
-		    }
-		    elseif ($row['role'] == 'student') {
-		    	$_SESSION['alogin']=$row['id'];
-				$_SESSION['email']=$row['email'];
-				$_SESSION['role'] = $row['role'];
-			 	echo "<script type='text/javascript'> document.location = 'users/index.php'; </script>";
-		    }
-		}
-	} 
-	else{
-	  
-	  echo "<script>alert('Invalid Details');</script>";
+<body style="background-color: #F7F7F8;">
 
-	}
+	<?php include('includess/navbar.php')?>
 
-}
-// $_SESSION['alogin']=$_POST['username'];
-// 	echo "<script type='text/javascript'> document.location = 'changepassword.php'; </script>";
-?>
+	<?php include('includess/right_sidebar.php')?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<!-- Basic Page Info -->
-	<meta charset="utf-8">
-	<title>SIMILA</title>
+	<?php include('includess/left_sidebar.php')?>
 
-	<!-- Site favicon -->
-	<link rel="apple-touch-icon" sizes="180x180" href="vendors/images/logo-poltek.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="vendors/images/logo-poltek.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="vendors/images/logo-poltek.png">
+	<div class="mobile-menu-overlay"></div>
 
-	<!-- Mobile Specific Metas -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="vendors/styles/core.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css">
-	<link rel="stylesheet" type="text/css" href="vendors/styles/style.css">
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script>
-	<style>
-		.img-fluid {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
-		.text-center, .txt {
-			color: #B33C69;
-		}
-		.btn {
-			background-color: #B33C69;
-			color: #fff;
-		}
-	</style>
-</head>
-<body class="login-page" style="background: url('src/images/cool-background.svg') no-repeat center center fixed; background-size: cover;">
-	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
-		<div class="container">
-			<div class="container py-5 h-100">
-					<div class="row d-flex justify-content-center align-items-center h-100">
-					<div class="col col-xl-10">
-						<div class="card" style="border-radius: 1rem;">
-						<div class="row g-0">
-							<div class="col-md-6 col-lg-5 d-none d-md-block">
-							<img src="src/images/Untitled-1.png"
-								alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-							</div>
-							<div class="col-md-6 col-lg-7 d-flex align-items-center">
-							<div class="card-body p-4 p-lg-5 text-black">
-
-								<form name="signin" method="post">
-
-								<div class="d-flex align-items-center mb-3 pb-1">
-									<div class="login-title">
-										<h2 class="text-center">Welcome To SIMILA</h2>
-									</div>
-								</div>
-
-								<h5 class="txt fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-
-								<div class="form-outline mb-4">
-									<!-- <label class="form-label" for="email"></label> -->
-									<input type="email" id="email" class="form-control form-control-lg" placeholder="Email address" name="email" id="email"/>
-								</div>
-
-								<div class="form-outline mb-4">
-									<!-- <label class="form-label" for="form2Example27">Password</label> -->
-									<input type="password" class="form-control form-control-lg" placeholder="Password" name="password" id="password"/>
-								</div>
-
-								<div class="pt-1 mb-4">
-									<button class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit">Login</button>
-								</div>
-
-								<!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
-								<!-- <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
-									style="color: #393f81;">Register here</a></p> -->
-								<br>
-								<a href="#!" class="small text-muted">Terms of use.</a>
-								<a href="#!" class="small text-muted">Privacy policy</a>
-								</form>
-
-							</div>
-							</div>
+	<div class="main-container">
+			<div class="pd-ltr-20">
+				<div class="card-box pd-20 height-10-p mb-30">
+					<div class="row align-items-center">
+						<div class="col-md-4 user-icon">
+							<img src="vendors/images/undraw_welcome_cats_thqn.svg" alt="" style="height: 200px; width:500px">
 						</div>
+						<div class="col-md-8">
+
+							<?php $query= mysqli_query($conn,"select * from users where id = 2")or die(mysqli_error());
+									$row = mysqli_fetch_array($query);
+							?>
+
+							<h4 class="font-20 weight-500 mb-10 text-capitalize">
+								Hi, <?php echo $row['username'] ?> 👋
+							</h4>
+							<p class="font-18 max-width-600 text-gray">Selamat datang, Ini adalah platform belajar Sistem Terminologi Medis Kasus Kehamilan Poltekkes Kemenkes Tasikmalaya.</p>
+							<p class="font-18 max-width-600 text-gray">Semangat belajar semoga sukses!</p>
 						</div>
-					</div>
 					</div>
 				</div>
-		</div>
+
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="materi.php" ><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See all</a>
+						<h2 class="text-blue h4">MATERI</h2>
+					</div>
+					<div class="pb-20">
+						<div class="row">
+							<?php
+							$query = mysqli_query($conn, "SELECT * FROM tbl_file ORDER BY date_uploaded DESC limit 4") or die(mysqli_error());
+							$count = mysqli_num_rows($query);
+
+							for ($i = 1; $i <= $count; $i++) {
+								$row = mysqli_fetch_array($query);
+								$id = $row['id'];
+							?>
+								<div class="col-lg-3 col-md-6 mb-20 pd-30">
+									<div class="card-box height-50-p pd-20 min-height-150px">
+										<div class="d-flex justify-content-between pb-10">
+											<div class="h5 mb-0">Materi <?php echo $i; ?></div>
+											<div class="table-actions">
+												<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>
+											</div>
+										</div>
+										<div class="user-list">
+											<ul>
+												<li class="d-flex align-items-center justify-content-between">
+													<div class="name-avatar d-flex align-items-center pr-2">
+														<div class="avatar mr-2 flex-shrink-0">
+															<img src="src/images/Notes-bro.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+														</div>
+														<div class="txt">
+															<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
+															<div class="font-14 weight-600"><?php echo $row['title']; ?></div>
+															<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
+														</div>
+													</div>
+													<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['file_uploader']; ?></div>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+				<div class="card-box mb-30">
+					<div class="pd-20">
+						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="kuis.php?q=1" ><i class="fa-solid fa-pen-to-square" style="margin-right:5px;"></i> Yuk Kuis</a>
+						<h2 class="text-blue h4">RIWAYAT PENGERJAAN</h2>
+					</div>
+					<div class="pb-20">
+						<table class="data-table table stripe hover nowrap">
+							<thead>
+								<tr>
+									<th class="table-plus">No</th>
+									<th class="datatable-nosort">Nama</th>
+									<th class="datatable-nosort">Pertanyaan</th>
+									<th class="datatable-nosort">Pertanyaan Terjawab</th>
+									<th>Benar</th>
+									<th>Salah</th>
+									<th>Skor</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<?php
+										$tampil = mysqli_query($conn, "SELECT users_kuis.username, quiz.title, history.level, history.sahi, history.wrong, history.score 
+										FROM history
+										JOIN quiz ON history.eid = quiz.eid
+										JOIN users_kuis ON history.id_users = users_kuis.id
+										ORDER BY history.date DESC
+										LIMIT 5") or die('Error');
+		
+										$x = 1;
+										while ($row = mysqli_fetch_array($tampil)) {
+										?>  
+
+										<td class="table-plus">
+											<?php echo $x; ?>
+										</td>
+										<td><?php echo $row['username']; ?></td>
+										<td><?php echo $row['title']; ?></td>
+										<td><?php echo $row['level']; ?></td>
+										<td><?php echo $row['sahi'];?></td>
+										<td><?php echo $row['wrong'];?></td>
+										<td><?php echo $row['score'];?></td>
+								</tr>
+								<?php $x++;}?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="card-box mb-30">
+					<div class="pd-20">
+							<a class="btn btn-primary float-right" style="margin-left: 10px;" href="termin.php"><i class="fa-solid fa-eye" style="margin-right:5px;"></i> See All</a>
+							<h2 class="text-blue h4">TERMINOLOGI MEDIS</h2>
+						</div>
+					<div class="pb-20">
+					<table class="data-table table-bordered table stripe hover ">
+						<thead>
+							<tr>
+								<th rowspan="2" class="table-plus" style="text-align: center;">No</th>
+								<th rowspan="2" style="text-align: center;">Istilah Medis</th>
+								<th colspan="3" class="datatable-nosort" style="text-align: center;">Pembentukan Istilah Medis</th>
+								<th rowspan="2" class="datatable-nosort" style="text-align: center;">Arti</th>
+								<th rowspan="2" style="text-align: center;">Kode ICD</th>
+							</tr>
+							<tr>
+								<th style="text-align: center;">Prefix</th>
+								<th style="text-align: center;">Root</th>
+								<th style="text-align: center;">Suffix</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+
+								<?php 
+								$tampil = mysqli_query($conn, "SELECT * FROM daftar_istilah_medis") or die(mysqli_error());
+								$x = 1;
+								while ($row = mysqli_fetch_array($tampil)) {
+
+								 ?>  
+
+								<td class="table-plus">
+									<?php echo $x; ?>
+								</td>
+								<td><?php echo $row['istilah_medis']; ?></td>
+	                            <td><?php echo $row['prefix'];?></td>
+	                            <td><?php echo $row['root'];?></td>
+	                            <td><?php echo $row['suffix'];?></td>
+								<td><?php echo $row['arti'];?></td>
+	                            <td><?php echo $row['kode_icd']; ?></td>
+							</tr>
+							<?php $x++;}?>
+						</tbody>
+					</table>
+					</div>
+				</div>
+				<?php include('includess/footer.php'); ?>
+			</div>
+			<!-- <div class="col-3 pd-ltr-20">
+				<div class="card-box height-200-p mb-30">
+					<div class="image-container" style="position: relative; display: flex; flex-direction: column; align-items: center;">
+						<img src="src/images/2.jpg" class="img-fluid" style="border-radius: 0.7rem 0.7rem 0 0; width: 100%;">
+						<div class="avatar-container" style="position: absolute; top: 50%; transform: translateY(-50%); width: 40%; height: 40%;">
+							<img src="uploads/NO-IMAGE-AVAILABLE.jpg" alt="" class="avatar-photo" style="width: 100%; height: 100%; border-radius: 50%;">
+							<div class="widget-data">
+								<div class="weight-700 font-18 text-white ">Jhon Doe</div>
+								<div class="font-14 text-white weight-500">JhonD24@gmail.edu</div>
+							</div>
+						</div>
+					</div>
+					<div class="row pd-20 align-items-center justify-content-center">
+						<div class="widget-data">
+							<div class="weight-700 font-20 text-secondary">Class Name</div>
+							<div class="font-14 text-dark weight-500">RMIK 3B</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
 	</div>
 	<!-- js -->
-	<script src="vendors/scripts/core.js"></script>
-	<script src="vendors/scripts/script.min.js"></script>
-	<script src="vendors/scripts/process.js"></script>
-	<script src="vendors/scripts/layout-settings.js"></script>
+	<?php include('includess/scripts.php')?>
 </body>
 </html>

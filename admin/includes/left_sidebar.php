@@ -1,6 +1,6 @@
 <div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index.php" style="padding-left: 1cm">
+			<a href="admin.php" style="padding-left: 1cm">
 				<img src="../src/images/loader_logo/simila.png" alt="" class="dark-logo">
 				<img src="../src/images/loader_logo/simila-white.png" alt="" class="light-logo">
 			</a>
@@ -12,7 +12,7 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li class="dropdown">
-						<a href="index.php" class="dropdown-toggle no-arrow">
+						<a href="admin.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Halaman Utama</span>
 						</a>
 						

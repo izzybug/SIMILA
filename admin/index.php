@@ -1,217 +1,148 @@
-<?php include('includes/header.php')?>
-<?php include('../includes/session.php')?>
-<body>
-	<!-- <div class="pre-loader">
-		<div class="pre-loader-box">
-			<div class="loader-logo"><img src="../src/images/loader_logo/simila.png" alt=""></div>
-			<div class='loader-progress' id="progress_div">
-				<div class='bar' id='bar1'></div>
-			</div>
-			<div class='percent' id='percent1'>0%</div>
-			<div class="loading-text">
-				Loading...
-			</div>
-		</div>
-	</div> -->
+<?php
+session_start();
+include('../includes/config.php');
+if(isset($_POST['signin']))
+{
+	$email=$_POST['email'];
+	$password=md5($_POST['password']);
 
-	<?php include('includes/navbar.php')?>
+	$sql ="SELECT * FROM users where email ='$email' AND password ='$password'";
+	$query= mysqli_query($conn, $sql);
+	$count = mysqli_num_rows($query);
+	if($count > 0)
+	{
+		while ($row = mysqli_fetch_assoc($query)) {
+		    if ($row['role'] == 'admin') {
+		    	$_SESSION['alogin']=$row['id'];
+				$_SESSION['email']=$row['email'];
+				$_SESSION['role'] = $row['role'];
+			 	echo "<script type='text/javascript'> document.location = 'admin.php'; </script>";
+		    }
+		    // elseif ($row['role'] == 'student') {
+		    // 	$_SESSION['alogin']=$row['id'];
+			// 	$_SESSION['email']=$row['email'];
+			// 	$_SESSION['role'] = $row['role'];
+			//  	echo "<script type='text/javascript'> document.location = 'users/index.php'; </script>";
+		    // }
+		}
+	} 
+	else{
+	  
+	  echo "<script>alert('Invalid Details');</script>";
 
-	<?php include('includes/right_sidebar.php')?>
+	}
 
-	<?php include('includes/left_sidebar.php')?>
+}
+// $_SESSION['alogin']=$_POST['username'];
+// 	echo "<script type='text/javascript'> document.location = 'changepassword.php'; </script>";
+?>
 
-	<div class="mobile-menu-overlay"></div>
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Basic Page Info -->
+	<meta charset="utf-8">
+	<title>SIMILA</title>
 
-	<div class="main-container">
-		<div class="pd-ltr-20">
-			<div class="card-box pd-20 height-100-p mb-30">
-				<div class="row align-items-center">
-					<div class="col-md-4 user-icon">
-						<img src="../vendors/images/undraw_hello_re_3evm.svg" alt="" style="height: 200px; width:500px">
-					</div>
-					<div class="col-md-8">
+	<!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="../vendors/images/logo-poltek.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../vendors/images/logo-poltek.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../vendors/images/logo-poltek.png">
 
-						<?php $query= mysqli_query($conn,"select * from users where id = '$session_id'")or die(mysqli_error());
-								$row = mysqli_fetch_array($query);
-						?>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Selamat Datang <div class="weight-600 font-30 text-blue"><?php echo $row['username']; ?>,</div>
-						</h4>
-						<p class="font-18 max-width-600">Ini adalah Sistem Terminologi Kehamilan Poltekkes Tasikmalaya.</p>
-					</div>
-				</div>
-			</div>
-			<div class="title pb-20">
-				<h2 class="h3 mb-0">Data Information</h2>
-			</div>
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="../vendors/styles/core.css">
+	<link rel="stylesheet" type="text/css" href="../vendors/styles/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="../vendors/styles/style.css">
 
-			<div class="row">
-				<div class="col-lg-4 col-md-5 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Materi</div>
-							<div class="table-actions">
-								<a title="VIEW" href="materi.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-119386393-1');
+	</script>
+	<style>
+		.img-fluid {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.text-center, .txt {
+			color: #B33C69;
+		}
+		.btn {
+			background-color: #B33C69;
+			color: #fff;
+		}
+	</style>
+</head>
+<body class="login-page" style="background: url('../src/images/cool-background.svg') no-repeat center center fixed; background-size: cover;">
+	<div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
+		<div class="container">
+			<div class="container py-5 h-100">
+					<div class="row d-flex justify-content-center align-items-center h-100">
+					<div class="col col-xl-10">
+						<div class="card" style="border-radius: 1rem;">
+						<div class="row g-0">
+							<div class="col-md-6 col-lg-5 d-none d-md-block">
+							<img src="../src/images/Untitled-1.png"
+								alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+							</div>
+							<div class="col-md-6 col-lg-7 d-flex align-items-center">
+							<div class="card-body p-4 p-lg-5 text-black">
+
+								<form name="signin" method="post">
+
+								<div class="d-flex align-items-center mb-3 pb-1">
+									<div class="login-title">
+										<h2 class="text-center">Welcome To SIMILA</h2>
+									</div>
+								</div>
+
+								<h5 class="txt fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+
+								<div class="form-outline mb-4">
+									<!-- <label class="form-label" for="email"></label> -->
+									<input type="email" id="email" class="form-control form-control-lg" placeholder="Email address" name="email" id="email"/>
+								</div>
+
+								<div class="form-outline mb-4">
+									<!-- <label class="form-label" for="form2Example27">Password</label> -->
+									<input type="password" class="form-control form-control-lg" placeholder="Password" name="password" id="password"/>
+								</div>
+
+								<div class="pt-1 mb-4">
+									<button class="btn btn-primary btn-lg btn-block" name="signin" id="signin" type="submit">Login</button>
+								</div>
+
+								<!-- <a class="small text-muted" href="#!">Forgot password?</a> -->
+								<!-- <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#!"
+									style="color: #393f81;">Register here</a></p> -->
+								<br>
+								<a href="#!" class="small text-muted">Terms of use.</a>
+								<a href="#!" class="small text-muted">Privacy policy</a>
+								</form>
+
+							</div>
 							</div>
 						</div>
-						<div class="user-list">
-							<ul>
-								<?php
-		                         $query = mysqli_query($conn,"SELECT * FROM tbl_file ORDER BY date_uploaded DESC limit 4") or die(mysqli_error());
-								 $x = 1;
-		                         while ($row = mysqli_fetch_array($query)) {
-		                             ?>
-
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../src/images/file-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $row['file_title'] ?></span>
-											
-											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['file']; ?></div>
-										</div>
-									</div>
-									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['file_uploader']; ?></div>
-								</li>
-								<?php $x++;}?>
-							</ul>
 						</div>
-						<div id="application-chart"></div>
+					</div>
 					</div>
 				</div>
-				<div class="col-lg-4 col-md-5 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Total Soal</div>
-							<div class="table-actions">
-								<a title="VIEW" href="list_kuis.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
-							</div>
-						</div>
-						<div class="user-list">
-							<ul>
-								<?php
-		                         $query = mysqli_query($conn,"SELECT * FROM quiz ORDER BY date DESC limit 4") or die(mysqli_error());
-								 $x = 1;
-		                         while ($row = mysqli_fetch_array($query)) {
-		                             ?>
-
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../src/images/file-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">Soal <?php echo $x; ?></span>
-											<div class="font-14 weight-600"><?php echo $row['title']; ?></div>
-											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['sahi']; ?></div>
-										</div>
-									</div>
-									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['total']; ?></div>
-								</li>
-								<?php $x++;}?>
-							</ul>
-						</div>
-						<div id="application-chart"></div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-5 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between">
-							<div class="h5 mb-0">Riwayat</div>
-							<div class="table-actions">
-								<a title="VIEW" href="histori.php"><i class="icon-copy ion-disc" data-color="#17a2b8"></i></a>	
-							</div>
-						</div>
-
-						<div class="user-list">
-						<ul>
-								<?php
-		                         $query = mysqli_query($conn, "SELECT users_kuis.username, quiz.title, history.score 
-								 FROM history
-								 JOIN quiz ON history.eid = quiz.eid
-								 JOIN users_kuis ON history.id_users = users_kuis.id
-								 ORDER BY history.date DESC 
-								 LIMIT 4") or die('Error');
-								 $x = 1;
-		                         while ($row = mysqli_fetch_array($query)) {
-		                             ?>
-
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../src/images/ranking-svgrepo-com.svg" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<span class="badge badge-pill badge-sm" data-bgcolor="#e7ebf5" data-color="#265ed7">No <?php echo $x; ?></span>
-											<div class="font-14 weight-600"><?php echo $row['username']; ?></div>
-											<div class="font-12 weight-500" data-color="#b2b1b6"><?php echo $row['title']; ?></div>
-										</div>
-									</div>
-									<div class="font-12 weight-500" data-color="#17a2b8"><?php echo $row['score']; ?></div>
-								</li>
-								<?php $x++;}?>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-box mb-30">
-				<div class="pd-20">
-						<a class="btn btn-primary float-right" style="margin-left: 10px;" href="termin.php"><i class="icon-copy ion-eye" style="margin-right:5px;"></i> See All</a>
-						<h2 class="text-blue h4">Terminologi Kehamilan</h2>
-					</div>
-				<div class="pb-20">
-					<table class="data-table table-bordered table stripe hover ">
-						<thead>
-							<tr>
-								<th class="table-plus">No</th>
-								<th>Istilah medis</th>
-								<th>Pembentukan Istilah Medis</th>
-								<th class="datatable-nosort">Arti</th>
-								<th class="datatable-nosort">Opsi</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-
-								<?php 
-								$tampil = mysqli_query($conn, "SELECT * FROM `daftar_istilah_medis` LIMIT 5") or die(mysqli_error());
-								$x = 1;
-								while ($row = mysqli_fetch_array($tampil)) {
-
-								 ?>  
-
-								<td class="table-plus">
-									<?php echo $x; ?>
-								</td>
-								<td><?php echo $row['istilah_medis']; ?></td>
-	                            <td><?php echo $row['pembentukan_istilah_medis']; ?></td>
-								<td><?php echo $row['arti'];?></td>
-								<td>
-									<div class="dropdown">
-										<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown"><i class="dw dw-more"></i>
-										</a>
-										<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-											<a class="dropdown-item" href="ubahdata.php?id=<?php echo $row['id'] ?>" ><i class="dw dw-edit2"></i> Edit</a>
-											<a class="dropdown-item" href="termin.php?delete=<?php echo $row['id'] ?>" data-color="red" ><i class="dw dw-delete-3"></i> Delete</a>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<?php $x++;}?>
-						</tbody>
-					</table>
-			   </div>
-			</div>
-			<?php include('includes/footer.php'); ?>
 		</div>
 	</div>
 	<!-- js -->
-
-	<?php include('includes/scripts.php')?>
+	<script src="../vendors/scripts/core.js"></script>
+	<script src="../vendors/scripts/script.min.js"></script>
+	<script src="../vendors/scripts/process.js"></script>
+	<script src="../vendors/scripts/layout-settings.js"></script>
 </body>
 </html>
